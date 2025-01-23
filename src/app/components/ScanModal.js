@@ -38,7 +38,7 @@ export default function ScanModal() {
               else setData("Not Found");
             }}
           />
-        <p>test</p>
+        
           <p>{data}</p>
         </Sheet>
       </Modal>
