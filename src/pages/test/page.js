@@ -49,7 +49,7 @@ function refreshMessages() {
   );
 }
 
-export default function index() {
+export default function page() {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
   const ref = React.useRef(null);

@@ -1,14 +1,12 @@
+'use client'
 import React, { useState } from "react";
 import Modal from "@mui/joy/Modal";
 import ModalClose from "@mui/joy/ModalClose";
-import dynamic from "next/dynamic";
-
-const BarcodeScannerComponent = dynamic(
-  () => import("react-qr-barcode-scanner").then((mod) => mod.BarcodeScannerComponent),
-  { ssr: false }
-);
+import { QrReader } from "react-qr-reader";
+import { Sheet } from "@mui/joy";
 
 export default function ScanModal() {
+   const [open, setOpen] = React.useState(true);
   const [data, setData] = useState("Not Found");
 
   return (
@@ -35,16 +33,15 @@ export default function ScanModal() {
             }}
           />
 
-          <BarcodeScannerComponent
-            width={500}
-            height={500}
-            onUpdate={(err, result) => {
+          <QrReader
+            onResult={(result, error) => {
               if (result) setData(result.text);
-              else setData("Not Found");
+              if (error) console.error(error);
             }}
+            style={{ width: "100%" }}
           />
-        
           <p>{data}</p>
+
         </Sheet>
       </Modal>
     </div>
