@@ -8,17 +8,19 @@ import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
 import Image from "next/image";
-import { useRouter } from 'next/router'
+
 
 import {
   Helvetica_Neue_Bold,
 } from "../../theme/typography";
+import { useRouter } from "next/router";
 
 export default function ScanModal() {
   const [scaner, setScaner] = useState(false);
   const [open, setOpen] = React.useState(true);
-  const [data, setData] = useState("Not Found");
-  const router = useRouter()
+  const [data, setData] = useState(null);
+  const router = useRouter();
+ 
 
 
   const handleBarCodeClick = () => {
@@ -26,8 +28,9 @@ export default function ScanModal() {
   };
 
   useEffect(()=>{
-    if (data) {
-        router.push(data);
+    if (data !== null) {
+      router.push(data);
+  
     }
   },[data])
 
