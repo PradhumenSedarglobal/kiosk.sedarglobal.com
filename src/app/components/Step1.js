@@ -26,6 +26,8 @@ const Step1 = () => {
 
   console.log(MediumScreen, "MediumScreen");
 
+ 
+
   return (
     <>
       {/* Middle Content */}
@@ -92,7 +94,7 @@ const Step1 = () => {
             <ImageCard
               category={selectedCategory}
               refName={selectCategoryRef}
-              index={4}
+              index={5}
               name="Folding Doors"
               functionname={handleChange}
               img="https://api.sedarglobal.com/uploads/100001/category/thumbnail/1635336029_6a569d40e47cef6878bb.jpg"
@@ -101,7 +103,7 @@ const Step1 = () => {
             <ImageCard
               category={selectedCategory}
               refName={selectCategoryRef}
-              index={4}
+              index={6}
               name="Outdoor"
               functionname={handleChange}
               img="https://api.sedarglobal.com/uploads/100001/category/thumbnail/1635335982_54441749439724d5cb3c.jpg"
@@ -110,7 +112,7 @@ const Step1 = () => {
             <ImageCard
               category={selectedCategory}
               refName={selectCategoryRef}
-              index={4}
+              index={7}
               name="Furnishings"
               functionname={handleChange}
               img="https://api.sedarglobal.com/uploads/100001/category/thumbnail/1635336166_c817833a064d4c901dba.jpg"

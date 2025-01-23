@@ -1,12 +1,13 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import Modal from "@mui/joy/Modal";
 import ModalClose from "@mui/joy/ModalClose";
 import { QrReader } from "react-qr-reader";
-import { Sheet } from "@mui/joy";
+import { Grid, Sheet } from "@mui/joy";
+import { Card } from "@mui/material";
 
 export default function ScanModal() {
-   const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(true);
   const [data, setData] = useState("Not Found");
 
   return (
@@ -20,7 +21,14 @@ export default function ScanModal() {
       >
         <Sheet
           variant="outlined"
-          sx={{ maxWidth: 500, borderRadius: "md", p: 3, boxShadow: "lg" }}
+          sx={{
+            width: "500px",
+            height: "500px",
+            maxWidth: 500,
+            borderRadius: "md",
+            p: 3,
+            boxShadow: "lg",
+          }}
         >
           <ModalClose
             variant="plain"
@@ -33,16 +41,31 @@ export default function ScanModal() {
             }}
           />
 
-          <QrReader
-            constraints={{ facingMode: "environment" }}
-            onResult={(result, error) => {
-              if (result) setData(result.text);
-              if (error) console.error(error);
-            }}
-            style={{ width: "500px",height:"500px" }}
-          />
-          <p>{data}</p>
+          <Grid container>
+            <Grid item md={6}>
+              {/* <QrReader
+                constraints={{ facingMode: "environment" }}
+                onResult={(result, error) => {
+                  if (result) setData(result.text);
+                  if (error) console.error(error);
+                }}
+                style={{ width: "200px", height: "200px" }}
+              /> */}
+            </Grid>
 
+            <Grid item md={6}>
+              <QrReader
+                constraints={{ facingMode: "environment" }}
+                onResult={(result, error) => {
+                  if (result) setData(result.text);
+                  if (error) console.error(error);
+                }}
+                style={{ width: "200px", height: "200px" }}
+              />
+            </Grid>
+          </Grid>
+
+          
         </Sheet>
       </Modal>
     </div>
