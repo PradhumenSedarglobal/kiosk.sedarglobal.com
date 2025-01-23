@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Modal from "@mui/joy/Modal";
 import ModalClose from "@mui/joy/ModalClose";
 import { QrReader } from "react-qr-reader";
@@ -8,6 +8,7 @@ import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
 import Image from "next/image";
+import { useRouter } from 'next/router'
 
 import {
   Helvetica_Neue_Bold,
@@ -17,10 +18,18 @@ export default function ScanModal() {
   const [scaner, setScaner] = useState(false);
   const [open, setOpen] = React.useState(true);
   const [data, setData] = useState("Not Found");
+  const router = useRouter()
+
 
   const handleBarCodeClick = () => {
     setScaner(true);
   };
+
+  useEffect(()=>{
+    if (data) {
+        router.push(data);
+    }
+  },[data])
 
   return (
     <div>
