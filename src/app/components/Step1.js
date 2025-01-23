@@ -56,32 +56,64 @@ const Step1 = () => {
               category={selectedCategory}
               refName={selectCategoryRef}
               index={1}
+              name="Curtains & Drapes"
+              link=""
               functionname={handleChange}
-              img="https://thumbs.dreamstime.com/b/blinds-icon-vector-set-white-background-eps-blinds-icon-isolated-white-background-332314075.jpg"
+              img="https://api.sedarglobal.com/uploads/100001/category/thumbnail/1634388691_db8499c6f8e7e2af4f6a.jpg"
             />
 
             <ImageCard
               category={selectedCategory}
               refName={selectCategoryRef}
               index={2}
+              name="Blinds & Shades"
               functionname={handleChange}
-              img="https://thumbs.dreamstime.com/b/blinds-icon-vector-set-white-background-eps-blinds-icon-isolated-white-background-332314075.jpg"
+              img="https://api.sedarglobal.com/uploads/100001/category/thumbnail/1660914255_63f9b70cb5d9919833ce.jpg"
             />
 
             <ImageCard
               category={selectedCategory}
               refName={selectCategoryRef}
               index={3}
+              name="Wallpaper"
               functionname={handleChange}
-              img="https://thumbs.dreamstime.com/b/blinds-icon-vector-set-white-background-eps-blinds-icon-isolated-white-background-332314075.jpg"
+              img="https://api.sedarglobal.com/uploads/100001/category/thumbnail/1636273291_50b4b7e1af3ccc0b81bf.jpg"
             />
 
             <ImageCard
               category={selectedCategory}
               refName={selectCategoryRef}
               index={4}
+              name="Smart Home"
               functionname={handleChange}
-              img="https://thumbs.dreamstime.com/b/blinds-icon-vector-set-white-background-eps-blinds-icon-isolated-white-background-332314075.jpg"
+              img="https://api.sedarglobal.com/uploads/100001/category/thumbnail/1635336114_0cdf7569b4b0cf3278f8.jpg"
+            />
+
+            <ImageCard
+              category={selectedCategory}
+              refName={selectCategoryRef}
+              index={4}
+              name="Folding Doors"
+              functionname={handleChange}
+              img="https://api.sedarglobal.com/uploads/100001/category/thumbnail/1635336029_6a569d40e47cef6878bb.jpg"
+            />
+
+            <ImageCard
+              category={selectedCategory}
+              refName={selectCategoryRef}
+              index={4}
+              name="Outdoor"
+              functionname={handleChange}
+              img="https://api.sedarglobal.com/uploads/100001/category/thumbnail/1635335982_54441749439724d5cb3c.jpg"
+            />
+
+            <ImageCard
+              category={selectedCategory}
+              refName={selectCategoryRef}
+              index={4}
+              name="Furnishings"
+              functionname={handleChange}
+              img="https://api.sedarglobal.com/uploads/100001/category/thumbnail/1635336166_c817833a064d4c901dba.jpg"
             />
           </Grid>
         </Box>

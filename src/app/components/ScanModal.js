@@ -34,11 +34,12 @@ export default function ScanModal() {
           />
 
           <QrReader
+            constraints={{ facingMode: "environment" }}
             onResult={(result, error) => {
               if (result) setData(result.text);
               if (error) console.error(error);
             }}
-            style={{ width: "100%" }}
+            style={{ width: "500px",height:"500px" }}
           />
           <p>{data}</p>
 
