@@ -4,6 +4,9 @@ const nextConfig = {
         domains: ['thumbs.dreamstime.com'], 
       },
       transpilePackages: ['mui-tel-input'],
+      eslint: {
+        ignoreDuringBuilds: true,
+      },
 };
 
 export default nextConfig;

@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import Modal from "@mui/joy/Modal";
 import ModalClose from "@mui/joy/ModalClose";
-import BarcodeScannerComponent from "react-qr-barcode-scanner";
+import dynamic from "next/dynamic";
+
+const BarcodeScannerComponent = dynamic(
+  () => import("react-qr-barcode-scanner").then((mod) => mod.BarcodeScannerComponent),
+  { ssr: false }
+);
 
 export default function ScanModal() {
   const [data, setData] = useState("Not Found");
