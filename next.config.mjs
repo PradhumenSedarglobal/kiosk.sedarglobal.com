@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ['thumbs.dreamstime.com','api.sedarglobal.com'], 
+        domains: ['thumbs.dreamstime.com','api.sedarglobal.com','static.vecteezy.com'], 
       },
       transpilePackages: ['mui-tel-input'],
       eslint: {
