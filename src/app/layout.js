@@ -6,8 +6,8 @@ import { DM_Serif_Text } from "next/font/google";
 import "./globals.css";
 import Head from "next/head";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
-import { Provider } from "react-redux";
-import store from "./store";
+
+
 
 const dmSerifText = DM_Serif_Text({
   weight: "400", 
@@ -46,9 +46,9 @@ export default function RootLayout({ children }) {
       </Head>
       <body className={`${nunito.variable} ${nunito.variable}`}>
         <AppRouterCacheProvider>
-          <Provider store={store}>
-            {children}
-          </Provider>
+            
+              {children}
+            
         </AppRouterCacheProvider>
       </body>
     </html>

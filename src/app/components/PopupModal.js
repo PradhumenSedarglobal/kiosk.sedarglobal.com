@@ -28,6 +28,7 @@ import { MarginRounded } from "@mui/icons-material";
 import Step4 from "./Step4";
 import Home from "@/pages";
 
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -55,7 +56,7 @@ const StyledTelInput = styled(MuiTelInput)({
   },
 });
 
-export default function PopupModal() {
+export default function PopupModal({ handleSubmit }) {
   const [formSubmited,setFormSubmited] = useState(false);
   const [open, setOpen] = useState(true);
   const handleOpen = () => setOpen(true);
@@ -67,9 +68,6 @@ export default function PopupModal() {
     setPhone(newPhone);
   };
 
-  const handleSubmit = () => {
-    setFormSubmited(true);
-  }
 
   return (
     <div>

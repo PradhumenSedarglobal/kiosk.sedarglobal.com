@@ -149,6 +149,10 @@ const Home = () => {
     }
   };
 
+  const handleSubmit = () => {
+    setStep(0);
+  };
+
   const renderStep = () => {
     switch (step) {
       case 0:
@@ -164,7 +168,7 @@ const Home = () => {
       case 5:
         return <Step4 />;
       default:
-        return <PopupModal />;
+        return <PopupModal handleSubmit={handleSubmit} />;
     }
   };
 
