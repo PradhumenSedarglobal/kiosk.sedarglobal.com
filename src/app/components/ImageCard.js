@@ -26,7 +26,7 @@ import typography, {
 
 const ImageCard = ({ functionname, index, img, refName, category, name,selected }) => {
   return (
-    <Grid xs={6} sm={6} md={4} item key={index} sx={{ mt: 2 }}>
+    <Grid item xs={6} sm={6} md={4}  key={index} sx={{ mt: 2,flexBasis:{md:"33.3333%",sm:"50%",xs:"50%"} }}>
       <Card
         ref={refName}
         onClick={() => functionname(index)}
