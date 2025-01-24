@@ -25,6 +25,7 @@ import typography, {
 } from "../../theme/typography";
 
 const ImageCard = ({ functionname, index, img, refName, category, name }) => {
+  console.log('test');
   return (
     <Grid xs={6} sm={6} md={4} item key={index} sx={{ mt: 2 }}>
       <Card
