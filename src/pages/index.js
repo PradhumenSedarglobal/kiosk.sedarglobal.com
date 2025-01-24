@@ -119,7 +119,7 @@ const AppBar = styled(MuiAppBar, {
   ],
 }));
 
-const Home = ({stepvalue}) => {
+const Home = () => {
   const [scanModal,setScanModal] = useState(false);
   const [step, setStep] = useState(0);
   const selectCategoryRef = useRef();
@@ -135,12 +135,7 @@ const Home = ({stepvalue}) => {
       setScanModal(true);
   },[]);
 
-  useEffect(()=>{
-      setStep(stepvalue);
-  },[stepvalue]);
 
-
-  
 
   const nextStep = () => {
     if (step < 6) {
