@@ -75,11 +75,6 @@ export default function page() {
     setSelectedCategory(index);
   };
 
-  React.useEffect(() => {
-    console.log("test", selectCategoryRef.current);
-  }, []);
-
-  console.log(MediumScreen, "MediumScreen");
 
   const nextStep = () => {
     if (step < 6) {

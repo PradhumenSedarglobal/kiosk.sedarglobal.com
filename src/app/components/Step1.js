@@ -20,13 +20,6 @@ const Step1 = () => {
     setSelectedCategory(index);
   };
 
-  useEffect(() => {
-    console.log("test", selectCategoryRef.current);
-  }, []);
-
-  console.log(MediumScreen, "MediumScreen");
-
- 
 
   return (
     <>

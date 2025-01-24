@@ -36,7 +36,6 @@ const Step3 = () => {
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
 
   const handleChange = (index) => {
-    console.log("sss", index);
     setSelectedCategory(index);
   };
 

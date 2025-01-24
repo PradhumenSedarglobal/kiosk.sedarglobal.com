@@ -48,7 +48,6 @@ const Modal = () => {
   const selectCategoryRef = useRef();
 
   const handleChange = (index) => {
-    console.log("sss", index);
     setSelectedCategory(index);
   };
 

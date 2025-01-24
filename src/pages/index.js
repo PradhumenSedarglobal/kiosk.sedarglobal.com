@@ -119,27 +119,26 @@ const AppBar = styled(MuiAppBar, {
   ],
 }));
 
-const Home = () => {
+const Home = ({stepvalue}) => {
+  const [scanModal,setScanModal] = useState(false);
   const [step, setStep] = useState(0);
   const selectCategoryRef = useRef();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
-  const xxSmall = useMediaQuery('(min-width: 361px) or (max-height:700px)');
-  const xSmall = useMediaQuery('(min-width: 376px) or (max-height:667px)');
-  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
-  const isMediumScreen = useMediaQuery(theme.breakpoints.between("md"));
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up("lg"));
 
   const handleChange = (index) => {
-    console.log("sss", index);
     setSelectedCategory(index);
   };
 
-  useEffect(() => {
-    console.log("rendor", selectCategoryRef.current);
-    console.log(xSmall,'screen');
-  }, [xSmall]);
+  useEffect(()=>{
+      setScanModal(true);
+  },[]);
+
+  useEffect(()=>{
+      setStep(stepvalue);
+  },[stepvalue]);
+
 
   
 
@@ -170,7 +169,7 @@ const Home = () => {
       case 5:
         return <Step4 />;
       default:
-        return <ScanModal />;
+        return <PopupModal />;
     }
   };
 
@@ -195,6 +194,10 @@ const Home = () => {
 
   return ( //isSmallScreen  ? "100vh" :
     <>
+      {scanModal && (
+        <ScanModal/>
+      )}
+
       <Grid container sx={{ height: {lg:'none',md:'100vh', sm:'100vh'}  }}>
         {/* Image Container */}
         <Grid

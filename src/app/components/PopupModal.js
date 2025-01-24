@@ -1,4 +1,4 @@
-import * as React from "react";
+import React,{useState} from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/joy/Modal";
@@ -25,6 +25,8 @@ import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
 import { Grid, Sheet, styled } from "@mui/joy";
 import { MarginRounded } from "@mui/icons-material";
+import Step4 from "./Step4";
+import Home from "@/pages";
 
 const style = {
   position: "absolute",
@@ -54,7 +56,8 @@ const StyledTelInput = styled(MuiTelInput)({
 });
 
 export default function PopupModal() {
-  const [open, setOpen] = React.useState(true);
+  const [formSubmited,setFormSubmited] = useState(false);
+  const [open, setOpen] = useState(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -63,6 +66,10 @@ export default function PopupModal() {
   const handleChange = (newPhone) => {
     setPhone(newPhone);
   };
+
+  const handleSubmit = () => {
+    setFormSubmited(true);
+  }
 
   return (
     <div>
@@ -83,7 +90,7 @@ export default function PopupModal() {
              
               m: 1,
               "&:hover": {
-                backgroundColor: "red",
+                backgroundColor: "#eaaf60",
                 color: "white",
               },
             }}
@@ -165,8 +172,10 @@ export default function PopupModal() {
           >
             <Button
               // color="#eaaf60"
-              sx={{backgroundColor:"#eaaf60",color:"#fff"}}
-              onClick={function () {}}
+              sx={{backgroundColor:"#eaaf60",color:"#fff",'&:hover':{
+                backgroundColor:"#010101",
+              }}}
+              onClick={()=>handleSubmit()}
               size="lg"
               variant="soft"
             >
