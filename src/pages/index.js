@@ -32,6 +32,7 @@ import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
 
+
 import {
   Box,
   Button,
@@ -68,8 +69,7 @@ import typography, {
 
 import PopupModal from "@/app/components/PopupModal";
 import ScanModal from "@/app/components/ScanModal";
-
-
+import { ModalClose, ModalDialog, Sheet } from "@mui/joy";
 
 const drawerWidth = 400;
 
@@ -120,26 +120,29 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const Home = () => {
-  const [scanModal,setScanModal] = useState(false);
+  const [success2, setSuccess2] = useState(false);
+  const [scanModal, setScanModal] = useState(false);
   const [step, setStep] = useState(0);
   const selectCategoryRef = useRef();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
+  const [openModal2, setOpenModal2] = useState(false);
 
   const handleChange = (index) => {
     setSelectedCategory(index);
   };
 
-  useEffect(()=>{
-      setScanModal(true);
-  },[]);
-
-
+  useEffect(() => {
+    setScanModal(true);
+  }, []);
 
   const nextStep = () => {
-    if (step < 6) {
+    console.log(step, 'dddd');
+    
+    if (step < 5) {
       setStep(step + 1);
+    }else{
+      setFormClose(true);
     }
   };
 
@@ -149,14 +152,29 @@ const Home = () => {
     }
   };
 
-  const handleSubmit = () => {
-    setStep(0);
+  
+
+  const handleSubmit = (submited) => {
+    console.log(submited, "value");
+    if(submited == 'close'){
+      setStep(5); 
+      return false;
+    }
+    if (submited == true) {
+      setSuccess2(true);
+    } 
+    setStep(0); 
   };
+
+ 
+  const [formClose,setFormClose] = useState(false);
+
+ 
 
   const renderStep = () => {
     switch (step) {
       case 0:
-        return <Step1 />;
+        return <Step1 successValue={success2}/>;
       case 1:
         return <Modal />;
       case 2:
@@ -166,9 +184,14 @@ const Home = () => {
       case 4:
         return <Step6 />;
       case 5:
-        return <Step4 />;
+        return <Step4 step={step} 
+          handleSubmit={handleSubmit} 
+          formClose={formClose} 
+          setFormClose={setFormClose}
+          setStep={setStep}
+          />;
       default:
-        return <PopupModal handleSubmit={handleSubmit} />;
+        return null;
     }
   };
 
@@ -189,15 +212,14 @@ const Home = () => {
     setOpen(false);
   };
 
- 
-
-  return ( //isSmallScreen  ? "100vh" :
+  return (
+    //isSmallScreen  ? "100vh" :
     <>
-      {scanModal && (
-        <ScanModal/>
-      )}
+   
+  
+      {scanModal && <ScanModal />}
 
-      <Grid container sx={{ height: {lg:'none',md:'100vh', sm:'100vh'}  }}>
+      <Grid container sx={{ height: { lg: "none", md: "100vh", sm: "100vh" } }}>
         {/* Image Container */}
         <Grid
           item
@@ -264,10 +286,10 @@ const Home = () => {
           <Box sx={{ width: "100%" }}>
             <Drawer
               sx={{
-                width: {md : drawerWidth, sm: '100%', xs: '100%'} ,
+                width: { md: drawerWidth, sm: "100%", xs: "100%" },
                 flexShrink: 0,
                 "& .MuiDrawer-paper": {
-                  width: {md : drawerWidth, sm: '100%', xs: '100%'},
+                  width: { md: drawerWidth, sm: "100%", xs: "100%" },
                   boxSizing: "border-box",
                 },
               }}
@@ -317,7 +339,7 @@ const Home = () => {
                       alt="Product"
                     />
                   </Grid>
-                  <Grid sx={{paddingLeft: '20px'}} item xs={8} sm={9} md={9}>
+                  <Grid sx={{ paddingLeft: "20px" }} item xs={8} sm={9} md={9}>
                     <Typography
                       sx={{
                         fontFamily: Helvetica_Neue_Medium.style.fontFamily,
@@ -334,9 +356,9 @@ const Home = () => {
                       Item Code : HNTB10-13
                     </Typography>
                     <Typography
-                    noWrap
+                      noWrap
                       sx={{
-                        wordBreak: 'break-all',
+                        wordBreak: "break-all",
                         fontFamily: Helvetica_Neue_Medium.style.fontFamily,
                         fontWeight: "700",
                         fontSize: "1rem", // Medium size
@@ -414,7 +436,7 @@ const Home = () => {
                       alt="Product"
                     />
                   </Grid>
-                  <Grid sx={{paddingLeft: '20px'}} item xs={8} sm={9} md={9}>
+                  <Grid sx={{ paddingLeft: "20px" }} item xs={8} sm={9} md={9}>
                     <Typography
                       sx={{
                         fontFamily: Helvetica_Neue_Medium.style.fontFamily,
@@ -498,173 +520,180 @@ const Home = () => {
               </List>
             </Drawer>
 
+            
+
             {renderStep()}
 
             {/* Bottom Bar */}
             <Box
-  sx={{
-    width: "100%",
-    backgroundColor: "#fff",
-    position: { lg: 'unset', xl: 'unset', xs: 'fixed', md: 'fixed', sm: 'fixed' },
-    bottom: { xs: 0, md: 0, sm: 0 }, // Stick to the bottom on small screens
-    left: 0, // Ensure it stays on the left side
-    zIndex: 1000, // Bring it on top of other elements
-    boxShadow: "0 -3px 11px -3px rgba(0, 0, 0, 0.1)", // Optional: Adds shadow for better visual separation
-  }}
->
-  <Grid
-    container
-    spacing={2} // Adds space between child Grid items
-    justifyContent="space-between"
-    alignItems="center"
-    sx={{
-      backgroundColor: "white",
-      boxShadow: "0 7px 11px -3px rgba(0, 0, 0, 0)",
-      paddingRight: "10px",
-      paddingLeft: "10px",
-    }}
-  >
-    <Grid item xs={7}>
-      <Typography
-        sx={{
-          fontFamily: Helvetica_Neue_Regular.style.fontFamily,
-          color: "#010101",
-          paddingTop: "25px",
-          textAlign: "start",
-          fontSize: "small",
-          // paddingLeft: "20px",
-        }}
-        gutterBottom
-        variant="h6"
-        component="div"
-      >
-        YJD500-07 - Brown
-      </Typography>
-      <Typography
-        sx={{
-          fontFamily: Helvetica_Neue_Bold.style.fontFamily,
-          color: "#010101",
-          textAlign: "start",
-          fontSize: "medium",
-          // paddingLeft: "20px",
-        }}
-        gutterBottom
-        variant="h6"
-        component="div"
-      >
-        Pinch Pleat Curtains
-      </Typography>
-    </Grid>
+              sx={{
+                width: "100%",
+                backgroundColor: "#fff",
+                position: {
+                  lg: "unset",
+                  xl: "unset",
+                  xs: "fixed",
+                  md: "fixed",
+                  sm: "fixed",
+                },
+                bottom: { xs: 0, md: 0, sm: 0 }, // Stick to the bottom on small screens
+                left: 0, // Ensure it stays on the left side
+                zIndex: 1000, // Bring it on top of other elements
+                boxShadow: "0 -3px 11px -3px rgba(0, 0, 0, 0.1)", // Optional: Adds shadow for better visual separation
+              }}
+            >
+              <Grid
+                container
+                spacing={2} // Adds space between child Grid items
+                justifyContent="space-between"
+                alignItems="center"
+                sx={{
+                  backgroundColor: "white",
+                  boxShadow: "0 7px 11px -3px rgba(0, 0, 0, 0)",
+                  paddingRight: "10px",
+                  paddingLeft: "10px",
+                }}
+              >
+                <Grid item xs={7}>
+                  <Typography
+                    sx={{
+                      fontFamily: Helvetica_Neue_Regular.style.fontFamily,
+                      color: "#010101",
+                      paddingTop: "25px",
+                      textAlign: "start",
+                      fontSize: "small",
+                      // paddingLeft: "20px",
+                    }}
+                    gutterBottom
+                    variant="h6"
+                    component="div"
+                  >
+                    YJD500-07 - Brown
+                  </Typography>
+                  <Typography
+                    sx={{
+                      fontFamily: Helvetica_Neue_Bold.style.fontFamily,
+                      color: "#010101",
+                      textAlign: "start",
+                      fontSize: "medium",
+                      // paddingLeft: "20px",
+                    }}
+                    gutterBottom
+                    variant="h6"
+                    component="div"
+                  >
+                    Pinch Pleat Curtains
+                  </Typography>
+                </Grid>
 
-    <Grid item xs={5}>
-      <Typography
-        sx={{
-          fontFamily: Helvetica_Neue_Bold.style.fontFamily,
-          color: "#010101",
-          paddingTop: "25px",
-          textAlign: "end",
-          fontSize: "medium",
-        }}
-        gutterBottom
-        variant="h6"
-        component="div"
-      >
-        Price : AED 400
-      </Typography>
-    </Grid>
-  </Grid>
+                <Grid item xs={5}>
+                  <Typography
+                    sx={{
+                      fontFamily: Helvetica_Neue_Bold.style.fontFamily,
+                      color: "#010101",
+                      paddingTop: "25px",
+                      textAlign: "end",
+                      fontSize: "medium",
+                    }}
+                    gutterBottom
+                    variant="h6"
+                    component="div"
+                  >
+                    Price : AED 400
+                  </Typography>
+                </Grid>
+              </Grid>
 
-  <Grid
-    container
-    spacing={2} // Adds space between child Grid items
-    justifyContent="space-between"
-    alignItems="center"
-    sx={{
-      paddingRight: "10px",
-      paddingLeft: "10px",
-      paddingBottom: "10px",
-    }}
-  >
-    <Grid
-      item
-      xs={6}
-      sx={{
-        display: "flex",
-        justifyContent: "flex-start",
-        alignItems: "start",
-      }}
-    >
-      {step > 0 && (
-        <Button
-          sx={{
-            display: "flex",
-            backgroundColor: "#ef9c00",
-            color: "#f5ece0",
-            fontFamily: Helvetica_Neue_Regular.style.fontFamily,
-            justifyContent: "flex-start",
-            alignItems: "start",
-          }}
-          onClick={previousStep}
-          size="large"
-          variant="contained"
-          startIcon={<ArrowCircleLeftIcon />}
-        >
-          Back
-        </Button>
-      )}
-    </Grid>
-    <Grid
-      item
-      xs={6}
-      sx={{
-        display: "flex",
-        justifyContent: "flex-end",
-        alignItems: "end",
-      }}
-    >
-      {step < 5 && (
-        <Button
-          sx={{
-            display: "flex",
-            backgroundColor: "#ef9c00",
-            color: "#f5ece0",
-            fontFamily: Helvetica_Neue_Regular.style.fontFamily,
-            fontWeight: "700",
-            justifyContent: "flex-end",
-            alignItems: "end",
-          }}
-          onClick={nextStep}
-          size="large"
-          variant="contained"
-          endIcon={<ArrowCircleRightIcon />}
-        >
-          Continue
-        </Button>
-      )}
+              <Grid
+                container
+                spacing={2} // Adds space between child Grid items
+                justifyContent="space-between"
+                alignItems="center"
+                sx={{
+                  paddingRight: "10px",
+                  paddingLeft: "10px",
+                  paddingBottom: "10px",
+                }}
+              >
+                <Grid
+                  item
+                  xs={6}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    alignItems: "start",
+                  }}
+                >
+                  {step > 0 && (
+                    <Button
+                      sx={{
+                        display: "flex",
+                        backgroundColor: "#ef9c00",
+                        color: "#f5ece0",
+                        fontFamily: Helvetica_Neue_Regular.style.fontFamily,
+                        justifyContent: "flex-start",
+                        alignItems: "start",
+                      }}
+                      onClick={previousStep}
+                      size="large"
+                      variant="contained"
+                      startIcon={<ArrowCircleLeftIcon />}
+                    >
+                      Back
+                    </Button>
+                  )}
+                </Grid>
+                <Grid
+                  item
+                  xs={6}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "flex-end",
+                    alignItems: "end",
+                  }}
+                >
+                  {step < 5 && (
+                    <Button
+                      sx={{
+                        display: "flex",
+                        backgroundColor: "#ef9c00",
+                        color: "#f5ece0",
+                        fontFamily: Helvetica_Neue_Regular.style.fontFamily,
+                        fontWeight: "700",
+                        justifyContent: "flex-end",
+                        alignItems: "end",
+                      }}
+                      onClick={nextStep}
+                      size="large"
+                      variant="contained"
+                      endIcon={<ArrowCircleRightIcon />}
+                    >
+                      Continue
+                    </Button>
+                  )}
 
-      {step === 5 && (
-        <Button
-          sx={{
-            display: "flex",
-            backgroundColor: "#ef9c00",
-            color: "#f5ece0",
-            fontFamily: Helvetica_Neue_Regular.style.fontFamily,
-            fontWeight: "700",
-            justifyContent: "flex-end",
-            alignItems: "end",
-          }}
-          onClick={nextStep}
-          size="large"
-          variant="contained"
-          endIcon={<LocalMallIcon />}
-        >
-          Add To Cart
-        </Button>
-      )}
-    </Grid>
-  </Grid>
-</Box>
-
+                  {step === 5 && (
+                    <Button
+                      sx={{
+                        display: "flex",
+                        backgroundColor: "#ef9c00",
+                        color: "#f5ece0",
+                        fontFamily: Helvetica_Neue_Regular.style.fontFamily,
+                        fontWeight: "700",
+                        justifyContent: "flex-end",
+                        alignItems: "end",
+                      }}
+                      onClick={() => nextStep()}
+                      size="large"
+                      variant="contained"
+                      endIcon={<LocalMallIcon />}
+                    >
+                      Add To Cart
+                    </Button>
+                  )}
+                </Grid>
+              </Grid>
+            </Box>
           </Box>
         </Grid>
       </Grid>

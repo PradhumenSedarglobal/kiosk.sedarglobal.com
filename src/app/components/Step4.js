@@ -30,10 +30,24 @@ import typography, {
 
 import Grid from "@mui/material/Grid2";
 import MainHeading from "./MainHeading";
+import PopupModal from "./PopupModal";
 
-const Step4 = () => {
+const Step4 = ({step,handleSubmit, formClose, setFormClose, setStep}) => {
+  console.log(step, formClose, 'fdd')
   return (
     <>
+
+      {/* Popup modal  */}
+
+      {step == 5  && formClose && (
+        <PopupModal 
+          handleSubmit={handleSubmit} 
+          formClose={formClose} 
+          setFormClose={setFormClose}
+          setStep={setStep}
+          />
+      )}
+
       {/* Middle Content */}
 
       <Box

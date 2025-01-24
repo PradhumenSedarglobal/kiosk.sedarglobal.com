@@ -14,6 +14,7 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
+  Modal,
   Select,
   TextField,
   Typography,
@@ -37,12 +38,17 @@ import typography, {
 } from "../../theme/typography";
 import MainHeading from "./MainHeading";
 import ImageCard from "./ImageCard";
+import PopupModal from "./PopupModal";
+
+import { ModalClose, ModalDialog } from "@mui/joy";
+import Image from "next/image";
 
 const dmserif = DM_Serif_Text({ weight: "400", subsets: ["latin"] });
 
 const notoSense = Noto_Sans({ weight: "400", subsets: ["latin"] });
 
-const Step1 = () => {
+const Step1 = ({successValue}) => {
+  const [open,setOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
   const selectCategoryRef = useRef();
@@ -55,9 +61,25 @@ const Step1 = () => {
     setSelectedOption(event.target.value);
   };
 
+  useEffect(()=>{
+    if(successValue){
+      setOpen(true);
+    }
+  },[successValue])
+
   return (
     <>
       {/* Middle Content */}
+
+      {successValue && (
+          <Modal open={open}>
+          <ModalDialog onClick={()=>setOpen(false)}>
+            <ModalClose />
+            <Image height={200} width={260} src="/success.gif" alt="success" />
+            <Typography sx={{fontFamily:Helvetica_Neue_Thin.style.fontFamily,textAlign:"center"}}>Data Submited Successfully!!</Typography>
+          </ModalDialog>
+        </Modal>
+      )}
 
       <Box
         sx={{

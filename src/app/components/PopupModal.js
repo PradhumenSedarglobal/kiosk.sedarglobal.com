@@ -56,9 +56,9 @@ const StyledTelInput = styled(MuiTelInput)({
   },
 });
 
-export default function PopupModal({ handleSubmit }) {
+export default function PopupModal({ handleSubmit, formClose, setFormClose, setStep }) {
   const [formSubmited,setFormSubmited] = useState(false);
-  const [open, setOpen] = useState(true);
+  //const [open, setOpen] = useState(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -74,8 +74,8 @@ export default function PopupModal({ handleSubmit }) {
       <Modal
         aria-labelledby="modal-title"
         aria-describedby="modal-desc"
-        open={open}
-        onClose={() => setOpen(false)}
+        open={formClose}
+        onClose={() => {handleSubmit('close'); setFormClose(false); setStep(5)}}
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
       >
         <Sheet
@@ -173,7 +173,7 @@ export default function PopupModal({ handleSubmit }) {
               sx={{backgroundColor:"#eaaf60",color:"#fff",'&:hover':{
                 backgroundColor:"#010101",
               }}}
-              onClick={()=>handleSubmit()}
+              onClick={() => handleSubmit(true)}
               size="lg"
               variant="soft"
             >
