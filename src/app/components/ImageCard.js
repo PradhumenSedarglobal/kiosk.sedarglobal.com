@@ -27,7 +27,6 @@ const ImageCard = ({ functionname, index, img,refName,category,name }) => {
         onClick={() => functionname(index)}  
         sx={{
           
-         
           boxShadow:
            category === index
               ? "0 0 0 3px #ef9c00"
@@ -72,19 +71,22 @@ const ImageCard = ({ functionname, index, img,refName,category,name }) => {
             }}
           >
             <Typography
+              
               sx={{
                 fontFamily: Helvetica_Neue_Bold.style.fontFamily,
                 fontWeight: 800,
                 color: "#686058",
                 textAlign: "center",
                 fontSize: "small",
-                textWrap: "nowrap",
+                // whiteSpace: "normal",
+                // overflow: "hidden",
+                // textOverflow: "ellipsis",
               }}
               gutterBottom
               variant="h6"
               component="div"
             >
-              Curtains & Drapes
+              {name}
             </Typography>
           </CardActions>
         </CardContent>

@@ -111,14 +111,16 @@ const Step3 = () => {
                 refName={selectCategoryRef}
                 index={1}
                 functionname={handleChange}
-                img="https://thumbs.dreamstime.com/b/blinds-icon-vector-set-white-background-eps-blinds-icon-isolated-white-background-332314075.jpg"
+                name="Blackout Curtain - Pinch Pleat - Brown"
+                img="https://api.sedarglobal.com/uploads/100001/item/laptop/1707974375_62b135de49ecaed05d00.webp?imwidth=1920"
               />
               <ImageCard
                 category={selectedCategory}
                 refName={selectCategoryRef}
                 index={2}
                 functionname={handleChange}
-                img="https://thumbs.dreamstime.com/b/blinds-icon-vector-set-white-background-eps-blinds-icon-isolated-white-background-332314075.jpg"
+                name="Fabric Curtain - Pinch Pleat - Khaki"
+                img="https://api.sedarglobal.com/uploads/100001/item/laptop/1708146524_d97c7cc07e26fd5ba93d.webp?imwidth=1920"
               />
 
               <ImageCard
@@ -126,7 +128,8 @@ const Step3 = () => {
                 refName={selectCategoryRef}
                 index={3}
                 functionname={handleChange}
-                img="https://thumbs.dreamstime.com/b/blinds-icon-vector-set-white-background-eps-blinds-icon-isolated-white-background-332314075.jpg"
+                name="Blackout Curtain - Pinch Pleat - Red"
+                img="https://api.sedarglobal.com/uploads/100001/item/laptop/1708154697_35150ccc448f4f780300.webp?imwidth=1920"
               />
 
               <ImageCard
@@ -134,7 +137,8 @@ const Step3 = () => {
                 refName={selectCategoryRef}
                 index={4}
                 functionname={handleChange}
-                img="https://thumbs.dreamstime.com/b/blinds-icon-vector-set-white-background-eps-blinds-icon-isolated-white-background-332314075.jpg"
+                name="Fabric Curtain - Pinch Pleat - Light Grey"
+                img="https://api.sedarglobal.com/uploads/100001/item/laptop/1715149486_b0e9fe2dedf1cb6a881b.webp?imwidth=1920"
               />
             </Grid>
           </Grid>
