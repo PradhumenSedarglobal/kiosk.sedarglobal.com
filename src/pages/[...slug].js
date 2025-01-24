@@ -121,16 +121,23 @@ const AppBar = styled(MuiAppBar, {
   ],
 }));
 
-export function middleware(request) {
-  return NextResponse.redirect(new URL('/', request.url))
-}
 
-export const config = {
-  matcher: '/about/:path*',
-}
+ 
+// This gets called on every request
+export async function getServerSideProps(contaxt) {
+    // Fetch data from external API
+    // const res = await fetch(`https://.../data`)
+    // const data = await res.json()
+    const {query} = contaxt;
+
+   
+    // Pass data to the page via props
+    return { props: { query } }
+  }
 
 
-const Home = () => {
+
+const Home = ({query}) => {
   const [success2, setSuccess2] = useState(false);
   const [scanModal, setScanModal] = useState(false);
   const [step, setStep] = useState(0);
@@ -138,6 +145,21 @@ const Home = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [openModal2, setOpenModal2] = useState(false);
+  const [page,setPage] = useState(null);
+
+
+ 
+  
+  useEffect(()=>{
+    
+    const slug = query.slug[1] ? 1 : 0;
+    if(slug == 1){
+        setStep(5);
+    }
+ 
+  },[]);
+
+//   console.log(slug,'slug');
   
 
   const handleChange = (index) => {
@@ -146,6 +168,8 @@ const Home = () => {
 
   useEffect(() => {
     setScanModal(true);
+   
+   
   }, []);
 
   const nextStep = () => {
@@ -186,15 +210,15 @@ const Home = () => {
   const renderStep = () => {
     switch (step) {
       case 0:
-        return <Step1 successValue={success2}/>;
+        return <Step1 page={page} successValue={success2}/>;
       case 1:
-        return <Modal />;
+        return <Modal page={page} />;
       case 2:
-        return <Step2 />;
+        return <Step2 page={page} />;
       case 3:
-        return <Step3 />;
+        return <Step3 page={page} />;
       case 4:
-        return <Step6 />;
+        return <Step6 page={page} />;
       case 5:
         return <Step4 step={step} 
           handleSubmit={handleSubmit} 

@@ -47,7 +47,7 @@ const dmserif = DM_Serif_Text({ weight: "400", subsets: ["latin"] });
 
 const notoSense = Noto_Sans({ weight: "400", subsets: ["latin"] });
 
-const Step1 = ({successValue}) => {
+const Step1 = ({successValue,page}) => {
   const [open,setOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -87,7 +87,7 @@ const Step1 = ({successValue}) => {
           paddingBottom: "1.5rem",
         }}
       >
-        <MainHeading sx={{ mb: 2 }} title="Step1 Selection" />
+        <MainHeading sx={{ mb: 2 }} title="Category Selection" />
 
         <Box
           sx={{
@@ -108,6 +108,7 @@ const Step1 = ({successValue}) => {
               category={selectedCategory}
               refName={selectCategoryRef}
               index={1}
+              selected={page == 0 ? true : false}
               name="Blackout Curtain - Pinch Pleat - Brown"
               functionname={handleChange}
               img="https://api.sedarglobal.com/uploads/100001/lifestyle/1707916579_d12d254ecbb41e75631d.webp?imwidth=1920"

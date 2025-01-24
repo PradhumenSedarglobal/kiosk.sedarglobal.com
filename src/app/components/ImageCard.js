@@ -24,7 +24,7 @@ import typography, {
   Helvetica_Neue_Arabic,
 } from "../../theme/typography";
 
-const ImageCard = ({ functionname, index, img, refName, category, name }) => {
+const ImageCard = ({ functionname, index, img, refName, category, name,selected }) => {
   return (
     <Grid xs={6} sm={6} md={4} item key={index} sx={{ mt: 2 }}>
       <Card
@@ -32,7 +32,7 @@ const ImageCard = ({ functionname, index, img, refName, category, name }) => {
         onClick={() => functionname(index)}
         sx={{
           boxShadow:
-            category === index ? "0 0 0 3px #ef9c00" : "0 0 0 2px #ededec",
+            category === index || selected == true ? "0 0 0 3px #ef9c00" : "0 0 0 2px #ededec",
           borderRadius: "10px",
           width: "100%", // Ensure the card takes up full width
           display: "flex",
