@@ -1,25 +1,59 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../../app/custom.css";
 import Grid from "@mui/material/Grid";
+import { DM_Serif_Text } from "next/font/google";
 
-import { Box, useMediaQuery } from "@mui/material";
+import { Noto_Sans } from "next/font/google";
 
+import {
+  Box,
+  Button,
+  Card,
+  CardActions,
+  CardContent,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
+
+import typography, {
+  Helvetica_Neue,
+  Helvetica_Neue_Regular,
+  Helvetica_Neue_Thin,
+  Helvetica_Neue_Light,
+  Helvetica_Neue_Medium,
+  Helvetica_Neue_Bold,
+  Helvetica_Neue_Light_Arabic,
+  Helvetica_Neue_Bold_Arabic,
+  Helvetica_Neue_Regular_Arabic,
+  Helvetica_Neue_Thin_Arabic,
+  Helvetica_Neue_Medium_Arabic,
+  Helvetica_Neue_Arabic,
+  porter_bold_3,
+} from "../../theme/typography";
 import MainHeading from "./MainHeading";
 import ImageCard from "./ImageCard";
-import { styled, useTheme } from "@mui/material/styles";
+
+const dmserif = DM_Serif_Text({ weight: "400", subsets: ["latin"] });
+
+const notoSense = Noto_Sans({ weight: "400", subsets: ["latin"] });
 
 const Step1 = () => {
-  const theme = useTheme();
+  const [selectedOption, setSelectedOption] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
   const selectCategoryRef = useRef();
-  const isMediumScreen = useMediaQuery(theme.breakpoints.between("sm", "md"));
-
-  const MediumScreen = useMediaQuery("(max-width: 768px)");
 
   const handleChange = (index) => {
     setSelectedCategory(index);
   };
 
+  const handleChangeSelect = (event) => {
+    setSelectedOption(event.target.value);
+  };
 
   return (
     <>
@@ -31,10 +65,11 @@ const Step1 = () => {
           paddingBottom: "1.5rem",
         }}
       >
-        <MainHeading sx={{ mb: 2 }} title="Select Category" />
+        <MainHeading sx={{ mb: 2 }} title="Modal Selection" />
+
         <Box
           sx={{
-            height: { lg: "calc(100vh - 280px)",overflow: "auto" },
+            height: { lg: "calc(100vh - 280px)", overflow: "auto" },
           }}
         >
           <Grid
@@ -44,10 +79,10 @@ const Step1 = () => {
               alignItems: {xs:"center",sm:"center",md:"start",lg:"start",xl:"start"},
               justifyContent: {xs:"center",sm:"center",md:"start",lg:"start",xl:"start"},
               px: 2,
-              pb: {sm:15,xs:15},
+              pb: {sm:20,xs:20},
             }}
           >
-            <ImageCard
+           <ImageCard
               category={selectedCategory}
               refName={selectCategoryRef}
               index={1}
@@ -110,6 +145,8 @@ const Step1 = () => {
               functionname={handleChange}
               img="https://api.sedarglobal.com/uploads/100001/category/thumbnail/1635336166_c817833a064d4c901dba.jpg"
             />
+
+           
           </Grid>
         </Box>
       </Box>
