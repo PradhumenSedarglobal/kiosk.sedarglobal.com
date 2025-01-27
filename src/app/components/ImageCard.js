@@ -54,7 +54,7 @@ const ImageCard = ({ functionname, index, img, refName, category, name,selected 
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            pt: "0",
+            py: "0 !important",
             width: "100%",
           }}
         >

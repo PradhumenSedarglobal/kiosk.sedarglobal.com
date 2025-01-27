@@ -47,10 +47,14 @@ body {
 .css-hvg0pp-MuiFormControl-root-MuiTextField-root {
   width: 100%;
 }
-
+/* 
 .css-1wx31yz-MuiCardContent-root:last-child {
   padding-bottom: 0px !important;
-}
+} */
+
+/* .css-8mg5ge:last-child {
+  padding-bottom: 0px !important;
+} */
 
 .error{
   color: red;

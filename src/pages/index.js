@@ -570,7 +570,7 @@ const Home = () => {
                   paddingLeft: "10px",
                 }}
               >
-                <Grid item xs={7}>
+                <Grid item xs={7} pt={"0 !important"}>
                   <Typography
                     sx={{
                       fontFamily: Helvetica_Neue_Regular.style.fontFamily,
@@ -602,7 +602,7 @@ const Home = () => {
                   </Typography>
                 </Grid>
 
-                <Grid item xs={5}>
+                <Grid item xs={5} pt={"0 !important"}>
                   <Typography
                     sx={{
                       fontFamily: Helvetica_Neue_Bold.style.fontFamily,
