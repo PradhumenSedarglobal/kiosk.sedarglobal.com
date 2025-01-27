@@ -75,7 +75,7 @@ export default function ScanModal() {
           <Grid
             container
             spacing={2} // Add spacing between grid items
-            justifyContent="space-between"
+            justifyContent={scaner ? "center" : "space-between"}
             alignItems="center"
             sx={{ pt: 4 }}
           >
