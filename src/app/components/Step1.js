@@ -69,7 +69,7 @@ const Step1 = ({successValue,page,stepcount}) => {
 
       setTimeout(()=>{
         setOpen(false);
-      },2000);
+      },3000);
     }
   },[successValue])
 
@@ -80,7 +80,7 @@ const Step1 = ({successValue,page,stepcount}) => {
       {/* Middle Content */}
 
       {successValue && stepcount != 1 && (
-          <Modal open={open}>
+          <Modal open={open} >
           <ModalDialog onClick={()=>setOpen(false)}>
             <ModalClose />
             <Image height={200} width={260} src="/success.gif" alt="success" />
