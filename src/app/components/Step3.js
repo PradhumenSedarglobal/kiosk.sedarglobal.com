@@ -111,7 +111,7 @@ const Step3 = () => {
                 refName={selectCategoryRef}
                 index={1}
                 functionname={handleChange}
-                name="Blackout Curtain - Pinch Pleat - Brown"
+                name="ALNK600-24"
                 img="https://api.sedarglobal.com/uploads/100001/item/laptop/1707974375_62b135de49ecaed05d00.webp?imwidth=1920"
               />
               <ImageCard
@@ -119,7 +119,7 @@ const Step3 = () => {
                 refName={selectCategoryRef}
                 index={2}
                 functionname={handleChange}
-                name="Fabric Curtain - Pinch Pleat - Khaki"
+                name="CBL702-7"
                 img="https://api.sedarglobal.com/uploads/100001/item/laptop/1708146524_d97c7cc07e26fd5ba93d.webp?imwidth=1920"
               />
 
@@ -128,7 +128,7 @@ const Step3 = () => {
                 refName={selectCategoryRef}
                 index={3}
                 functionname={handleChange}
-                name="Blackout Curtain - Pinch Pleat - Red"
+                name="HME14-6"
                 img="https://api.sedarglobal.com/uploads/100001/item/laptop/1708154697_35150ccc448f4f780300.webp?imwidth=1920"
               />
 
@@ -137,7 +137,7 @@ const Step3 = () => {
                 refName={selectCategoryRef}
                 index={4}
                 functionname={handleChange}
-                name="Fabric Curtain - Pinch Pleat - Light Grey"
+                name="HNTB10-13"
                 img="https://api.sedarglobal.com/uploads/100001/item/laptop/1715149486_b0e9fe2dedf1cb6a881b.webp?imwidth=1920"
               />
             </Grid>
