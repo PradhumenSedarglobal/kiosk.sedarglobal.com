@@ -47,7 +47,7 @@ const dmserif = DM_Serif_Text({ weight: "400", subsets: ["latin"] });
 
 const notoSense = Noto_Sans({ weight: "400", subsets: ["latin"] });
 
-const Step1 = ({successValue,page}) => {
+const Step1 = ({successValue,page,stepcount}) => {
   const [open,setOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -62,6 +62,7 @@ const Step1 = ({successValue,page}) => {
   };
 
   useEffect(()=>{
+   console.log(stepcount);
     if(successValue){
       setOpen(true);
 

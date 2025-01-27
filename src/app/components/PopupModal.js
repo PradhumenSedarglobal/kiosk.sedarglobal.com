@@ -66,7 +66,7 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose, setS
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const {register,handleSubmit:handleSubmit2,watch,formState:{errors}} = useForm();
+  const {register,handleSubmit:handleSubmit2,watch,formState:{errors}, clearErrors} = useForm();
 
   // const onSubmit = (data) => console.log(data);
 
@@ -79,6 +79,7 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose, setS
   const [phone, setPhone] = React.useState("+971-2-1234567");
 
   const handleChange = (newPhone) => {
+    clearErrors('mobile_no');
     setPhone(newPhone);
   };
 

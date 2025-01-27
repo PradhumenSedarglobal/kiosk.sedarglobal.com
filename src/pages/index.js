@@ -175,6 +175,7 @@ const Home = () => {
     if (submited == true) {
       setSuccess2(true);
     } 
+
     setStep(0); 
   };
 
@@ -186,7 +187,7 @@ const Home = () => {
   const renderStep = () => {
     switch (step) {
       case 0:
-        return <Step1 successValue={success2}/>;
+        return <Step1 successValue={success2} stepcount={step} />;
       case 1:
         return <Modal />;
       case 2:
