@@ -84,7 +84,7 @@ const Step2 = () => {
               >
                 Product Width (Min 100 cm - Max 500 cm)
               </InputLabel>
-              <Input  size="lg" variant="outlined" />
+              <Input  size="lg" variant="outlined" sx={{backgroundColor:"#fff"}} />
             </Box>
             <Box>
               <InputLabel
@@ -96,7 +96,7 @@ const Step2 = () => {
               >
                 Product Height (Min 200 cm - Max 375 cm)
               </InputLabel>
-              <Input size="lg" variant="outlined" />
+              <Input size="lg" variant="outlined" sx={{backgroundColor:"#fff"}} />
             </Box>
             <Box>
               <Typography
