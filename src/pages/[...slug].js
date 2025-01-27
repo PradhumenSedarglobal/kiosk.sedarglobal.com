@@ -253,7 +253,7 @@ const Home = ({query}) => {
     <>
    
   
-      {scanModal && <ScanModal />}
+      {/* {scanModal && <ScanModal />} */}
 
       <Grid container sx={{ height: { lg: "none", md: "100vh", sm: "100vh" } }}>
         {/* Image Container */}
@@ -289,9 +289,9 @@ const Home = ({query}) => {
             <MenuIcon />
           </Fab>
 
-          <Carousel>
+          <Carousel selectedItem={1}>
             <div>
-              <img src="./360.png" />
+              <img src="../360.png" />
             </div>
 
             <div>
