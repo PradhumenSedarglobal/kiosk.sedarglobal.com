@@ -56,6 +56,11 @@ body {
   padding-bottom: 0px !important;
 } */
 
+.carousel .thumb {
+  width: 120px !important; /* Change width as needed */
+  height: auto; /* Ensure the aspect ratio is maintained */
+}
+
 .error{
   color: red;
   font-size: smaller;

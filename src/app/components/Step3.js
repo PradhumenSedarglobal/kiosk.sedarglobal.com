@@ -53,7 +53,7 @@ const Step3 = () => {
 
         <Box
           sx={{
-            height: { lg: "calc(100vh - 280px)", overflow: "auto" },
+            height: { lg: "calc(100vh - 240px)", overflow: "auto", },
           }}
         >
           <Grid
@@ -62,7 +62,7 @@ const Step3 = () => {
               alignItems: {xs:"center",sm:"center",md:"start",lg:"start",xl:"start"},
               justifyContent: {xs:"center",sm:"center",md:"start",lg:"start",xl:"start"},
               px: 2,
-              pb: {sm:20,xs:20},
+              pb: {sm:20,xs:20,md:5,lg:5},
             }}
           >
             <TextField

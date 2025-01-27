@@ -268,6 +268,8 @@ const Home = () => {
             <MenuIcon />
           </Fab>
 
+         
+
           <Carousel selectedItem={1}>
             <div>
               <img src="./360.png" />
@@ -552,6 +554,7 @@ const Home = () => {
                   md: "fixed",
                   sm: "fixed",
                 },
+                overflow:"hidden",
                 bottom: { xs: 0, md: 0, sm: 0 }, // Stick to the bottom on small screens
                 left: 0, // Ensure it stays on the left side
                 zIndex: 1000, // Bring it on top of other elements
