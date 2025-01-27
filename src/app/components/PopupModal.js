@@ -90,10 +90,12 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose, setS
         aria-labelledby="modal-title"
         aria-describedby="modal-desc"
         open={formClose}
-        onClose={() => {
+        onClose={(_event, reason) =>{
+          if (reason && reason === "backdropClick")
+            return;
           handleSubmit('close'); setFormClose(false); setStep(5)
-        
         }}
+        
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
         
       >

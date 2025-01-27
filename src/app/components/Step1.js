@@ -43,6 +43,7 @@ import PopupModal from "./PopupModal";
 import { ModalClose, ModalDialog } from "@mui/joy";
 import Image from "next/image";
 
+
 const dmserif = DM_Serif_Text({ weight: "400", subsets: ["latin"] });
 
 const notoSense = Noto_Sans({ weight: "400", subsets: ["latin"] });
@@ -67,6 +68,8 @@ const Step1 = ({successValue,page,stepcount}) => {
     if(successValue){
       setOpen(true);
 
+      
+
       setTimeout(()=>{
         setOpen(false);
       },3000);
@@ -80,7 +83,7 @@ const Step1 = ({successValue,page,stepcount}) => {
       {/* Middle Content */}
 
       {successValue && stepcount != 1 && (
-          <Modal open={open} >
+          <Modal open={open}>
           <ModalDialog onClick={()=>setOpen(false)}>
             <ModalClose />
             <Image height={200} width={260} src="/success.gif" alt="success" />

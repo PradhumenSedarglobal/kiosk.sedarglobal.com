@@ -47,7 +47,11 @@ export default function ScanModal() {
         aria-labelledby="modal-title"
         aria-describedby="modal-desc"
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={(_event, reason) =>{
+          if (reason && reason === "backdropClick")
+            return;
+          setOpen(false)
+        }}
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
       >
         <Sheet
