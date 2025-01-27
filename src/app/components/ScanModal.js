@@ -11,6 +11,7 @@ import Image from "next/image";
 
 import { Helvetica_Neue_Bold } from "../../theme/typography";
 import { useRouter } from "next/router";
+import { useMediaQuery } from "@mui/material";
 
 export default function ScanModal() {
   const [scaner, setScaner] = useState(false);
@@ -19,6 +20,8 @@ export default function ScanModal() {
   const router = useRouter();
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef();
+ 
+  
 
   const handleClickOutside = (e) => {
     if (e.target.classList.contains("backdrop")) {
@@ -40,6 +43,12 @@ export default function ScanModal() {
       router.push(data);
     }
   }, [data]);
+
+  useEffect(()=>{
+     if(setIsSmallScreen){
+        setImgHeight(90);
+     }
+  });
 
   return (
     <div>
@@ -70,11 +79,11 @@ export default function ScanModal() {
           <Grid
             container
             spacing={2} // Add spacing between grid items
-            justifyContent="center"
+            justifyContent="space-between"
             alignItems="center"
             sx={{ pt: 4 }}
           >
-            <Grid item xs={12} md={6} display="flex" justifyContent="center">
+            <Grid item xs={6} md={6} display="flex" justifyContent="center">
               {" "}
               {/* Added flexbox for centering */}
               {scaner ? (
@@ -101,17 +110,18 @@ export default function ScanModal() {
                   }}
                 >
                   <Image
-                    height={210}
-                    width={120}
-                    src="https://static.vecteezy.com/system/resources/previews/007/116/266/non_2x/scan-the-qr-code-using-a-scanner-on-your-tablet-or-phone-to-confirm-vaccination-or-to-make-a-purchase-flat-illustration-vector.jpg"
+                    height={128}
+                    width={128}
+                    src="/scanner.png"
                     loading="lazy"
                     alt="Scan QR Code"
                     style={{ maxWidth: "100%", objectFit: "contain" }}
                   />
                   <CardContent>
                     <Typography
-                      sx={{ fontFamily: Helvetica_Neue_Bold.style.fontFamily }}
+                      sx={{ fontFamily: Helvetica_Neue_Bold.style.fontFamily,fontSize:"smaller" }}
                       level="title-md"
+                      
                     >
                       Scan your product
                     </Typography>
@@ -121,7 +131,7 @@ export default function ScanModal() {
             </Grid>
 
             {!scaner && (
-              <Grid item xs={12} md={6} display="flex" justifyContent="center">
+              <Grid item xs={6} md={6} display="flex" justifyContent="center">
                 <Card
                   onClick={() => handleManualClick()}
                   variant="outlined"
@@ -133,16 +143,16 @@ export default function ScanModal() {
                   }}
                 >
                   <Image
-                    height={185}
-                    width={120}
-                    src="https://static.vecteezy.com/system/resources/previews/049/345/593/non_2x/icon-select-related-to-choice-symbol-comic-style-simple-illustration-free-vector.jpg"
+                    height={128}
+                    width={128}
+                    src="/manual.png"
                     loading="lazy"
                     alt="Build Product"
                     style={{ maxWidth: "100%", objectFit: "contain" }}
                   />
                   <CardContent>
                     <Typography
-                      sx={{ fontFamily: Helvetica_Neue_Bold.style.fontFamily }}
+                      sx={{ fontFamily: Helvetica_Neue_Bold.style.fontFamily,fontSize:"smaller" }}
                       level="title-md"
                     >
                       Build your product
