@@ -44,11 +44,7 @@ export default function ScanModal() {
     }
   }, [data]);
 
-  useEffect(()=>{
-     if(setIsSmallScreen){
-        setImgHeight(90);
-     }
-  });
+
 
   return (
     <div>
