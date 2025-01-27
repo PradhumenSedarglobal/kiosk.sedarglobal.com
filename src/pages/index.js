@@ -231,7 +231,7 @@ const Home = () => {
   
       {scanModal && <ScanModal />}
 
-      <Grid container sx={{ height: { lg: "none", md: "100vh", sm: "100vh" } }}>
+      <Grid container sx={{ height: { maxWidth:"1920px",margin:"auto", lg: "none", md: "100vh", sm: "100vh" } }}>
         {/* Image Container */}
         <Grid
           item
@@ -293,9 +293,10 @@ const Home = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            
           }}
         >
-          <Box sx={{ width: "100%" }}>
+          <Box sx={{  width: "100%" }}>
             <Drawer
               sx={{
                 width: { md: drawerWidth, sm: "100%", xs: "100%" },

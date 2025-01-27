@@ -86,101 +86,31 @@ const Modal = () => {
               category={selectedCategory}
               refName={selectCategoryRef}
               index={1}
-              name="Blackout Curtain - Pinch Pleat - Brown"
+              name="Fabric Curtain - Eyelet"
               functionname={handleChange}
-              img="https://api.sedarglobal.com/uploads/100001/lifestyle/1707916579_d12d254ecbb41e75631d.webp?imwidth=1920"
+              img="https://api.sedarglobal.com/uploads/100001/lifestyle/1697618134_6e6fb48c2201f95bc514.webp?imwidth=1920"
             />
 
-            <ImageCard
+          <ImageCard
               category={selectedCategory}
               refName={selectCategoryRef}
               index={2}
-              name="Fabric Curtain - Pinch Pleat - Khaki"
+              name="Pinch Pleat Curtain"
               functionname={handleChange}
-              img="https://api.sedarglobal.com/uploads/100001/lifestyle/1708149009_7cd4a25064aeec473ac8.webp?imwidth=1920"
+              img="https://api.sedarglobal.com/uploads/100001/lifestyle/1707808691_60e89e939d376706dabd.webp?imwidth=200"
             />
+
 
             <ImageCard
               category={selectedCategory}
               refName={selectCategoryRef}
               index={3}
-              name="Blackout Curtain - Pinch Pleat - Red"
+              name="Ripple Fold"
               functionname={handleChange}
-              img="https://api.sedarglobal.com/uploads/100001/lifestyle/1708154756_bef8bfc7647a08de5816.webp?imwidth=1920"
+              img="https://api.sedarglobal.com/uploads/100001/lifestyle/1708000430_546345798927edf987f6.webp?imwidth=200"
             />
 
-            <ImageCard
-              category={selectedCategory}
-              refName={selectCategoryRef}
-              index={4}
-              name="Fabric Curtain - Pinch Pleat - Light Grey"
-              functionname={handleChange}
-              img="https://api.sedarglobal.com/uploads/100001/lifestyle/1707997195_3c59db94d6241d59fb91.webp?imwidth=1920"
-            />
-
-            <ImageCard
-              category={selectedCategory}
-              refName={selectCategoryRef}
-              index={5}
-              name="Fabric Curtain - Pinch Pleat - Brown"
-              functionname={handleChange}
-              img="https://api.sedarglobal.com/uploads/100001/lifestyle/1707997469_091cf9729889cf0ceee7.webp?imwidth=1920"
-            />
-
-            <ImageCard
-              category={selectedCategory}
-              refName={selectCategoryRef}
-              index={6}
-              name="Fabric Curtain - Pinch Pleat - Light Blue"
-              functionname={handleChange}
-              img="https://api.sedarglobal.com/uploads/100001/lifestyle/1715150694_08c30ecdccef0d2769f4.webp?imwidth=1920"
-            />
-
-
-          <ImageCard
-              category={selectedCategory}
-              refName={selectCategoryRef}
-              index={7}
-              name="Blackout Curtain - Pinch Pleat - Silver"
-              functionname={handleChange}
-              img="https://api.sedarglobal.com/uploads/100001/lifestyle/1708001442_2465bdeb024eef46bd3a.webp?imwidth=1920"
-            />
-
-            <ImageCard
-              category={selectedCategory}
-              refName={selectCategoryRef}
-              index={8}
-              name="Blackout Curtain - Pinch Pleat - Silver"
-              functionname={handleChange}
-              img="https://api.sedarglobal.com/uploads/100001/lifestyle/1709554078_3b9a1062bf8000bdd7f9.webp?imwidth=1920"
-            />
-
-            <ImageCard
-              category={selectedCategory}
-              refName={selectCategoryRef}
-              index={9}
-              name="Sheer Curtain - Pinch Pleat - White"
-              functionname={handleChange}
-              img="https://api.sedarglobal.com/uploads/100001/lifestyle/1715922228_dd60fd05ebe7a202a473.webp?imwidth=1920"
-            />
-
-            <ImageCard
-              category={selectedCategory}
-              refName={selectCategoryRef}
-              index={10}
-              name="Sheer Curtain - Pinch Pleat - Light Grey"
-              functionname={handleChange}
-              img="https://api.sedarglobal.com/uploads/100001/lifestyle/1707734226_7172496c5bbdf7c09729.webp?imwidth=1920"
-            />
-
-            <ImageCard
-              category={selectedCategory}
-              refName={selectCategoryRef}
-              index={11}
-              name="Fabric Curtain - Pinch Pleat - Beige"
-              functionname={handleChange}
-              img="https://api.sedarglobal.com/uploads/100001/lifestyle/1714566897_386fd5f4805cc7138774.webp?imwidth=1920"
-            />
+          
 
            
           </Grid>

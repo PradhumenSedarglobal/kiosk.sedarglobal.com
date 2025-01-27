@@ -32,9 +32,9 @@ const ImageCard = ({ functionname, index, img, refName, category, name,selected 
         onClick={() => functionname(index)}
         sx={{
           boxShadow:
-            category === index || selected == true ? "0 0 0 3px #ef9c00" : "0 0 0 2px #ededec",
+          category === index || selected == true ? "0 0 0 3px #ef9c00" : "0 0 0 2px #ededec",
           borderRadius: "10px",
-          width: "100%", // Ensure the card takes up full width
+          width: "100%", 
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
