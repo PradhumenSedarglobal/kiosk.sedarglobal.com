@@ -175,7 +175,7 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose, setS
                   fontFamily: Helvetica_Neue_Light.style.fontFamily,
                 }}
                 placeholder="Enter consultant Id"
-                inputRef={field.ref}
+               
               />
               {errors.salesmen_id && <span className="error" style={{fontFamily:Helvetica_Neue.style.fontFamily}}>Consultant Id is required</span>}
             </Grid>
