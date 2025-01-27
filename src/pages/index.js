@@ -138,6 +138,7 @@ const Home = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
   const [openModal2, setOpenModal2] = useState(false);
+  const [lastPage,setLastPage] = useState();
   
 
   const handleChange = (index) => {
@@ -159,6 +160,7 @@ const Home = () => {
   };
 
   const previousStep = () => {
+    setLastPage(step);
     if (step > 0) {
       setStep(step - 1);
     }
@@ -187,7 +189,7 @@ const Home = () => {
   const renderStep = () => {
     switch (step) {
       case 0:
-        return <Step1 successValue={success2} stepcount={step} />;
+        return <Step1 successValue={success2} stepcount={lastPage} />;
       case 1:
         return <Modal />;
       case 2:

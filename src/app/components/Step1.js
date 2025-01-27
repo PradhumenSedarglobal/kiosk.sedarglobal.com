@@ -63,20 +63,23 @@ const Step1 = ({successValue,page,stepcount}) => {
 
   useEffect(()=>{
    console.log(stepcount);
+  
     if(successValue){
       setOpen(true);
 
       setTimeout(()=>{
         setOpen(false);
-      },3000);
+      },2000);
     }
   },[successValue])
+
+  
 
   return (
     <>
       {/* Middle Content */}
 
-      {successValue && (
+      {successValue && stepcount != 1 && (
           <Modal open={open}>
           <ModalDialog onClick={()=>setOpen(false)}>
             <ModalClose />
