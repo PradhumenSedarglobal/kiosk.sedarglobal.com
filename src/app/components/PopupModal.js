@@ -90,17 +90,12 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose, setS
         aria-labelledby="modal-title"
         aria-describedby="modal-desc"
         open={formClose}
-        // onClose={() => {handleSubmit('close'); setFormClose(false); setStep(5)}}
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-        onClose={(e, reason) => {
-          // Disable close when clicking outside or pressing Escape
-          if (reason === 'backdropClick') {
-            return;
-          }
+        onClose={() => {
           handleSubmit('close'); setFormClose(false); setStep(5)
+        
         }}
-        disableEnforceClick
-        hideBackdrop={true}
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+        
       >
         <Sheet
           variant="outlined"
@@ -217,7 +212,20 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose, setS
         </Sheet>
       </Modal>
 
-      
+      {/* <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          sx={{
+            backgroundColor:"#ef9c00",
+            width: "100%" 
+          }}
+          // severity="success"
+          variant="filled"
+          
+        >
+          Item add to cart successfully!
+        </Alert>
+      </Snackbar> */}
     </div>
   );
 }
