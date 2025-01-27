@@ -44,22 +44,14 @@ body {
   padding-top: 0 !important;
 }
 
-/* .css-hvg0pp-MuiFormControl-root-MuiTextField-root {
-  width: 100%;
-} */
-/* 
-.css-1wx31yz-MuiCardContent-root:last-child {
-  padding-bottom: 0px !important;
-} */
-
-/* .css-8mg5ge:last-child {
-  padding-bottom: 0px !important;
-} */
-
-.carousel .thumb {
-  width: 120px !important; /* Change width as needed */
-  height: auto; /* Ensure the aspect ratio is maintained */
+@media only screen and (max-width: 600px) {
+  .carousel .thumb {
+    width: 120px !important; /* Change width as needed */
+    height: auto; /* Ensure the aspect ratio is maintained */
+  }
 }
+
+
 
 .error{
   color: red;
