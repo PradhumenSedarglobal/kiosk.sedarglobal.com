@@ -157,6 +157,7 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose, setS
                 {...register("mobile_no",{required:true})}
                 size="small"
                 value={phone}
+                sx={{width:"100%"}}
                 onChange={handleChange}
               />
               {errors.mobile_no && <span className="error" style={{fontFamily:Helvetica_Neue.style.fontFamily}}>Mobile No is required</span>}
