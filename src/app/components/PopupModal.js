@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/joy/Modal";
 import ModalClose from "@mui/joy/ModalClose";
 import { MuiTelInput } from "mui-tel-input";
+import { useForm } from "react-hook-form"
 
 import typography, {
   Helvetica_Neue,
@@ -56,11 +57,24 @@ const StyledTelInput = styled(MuiTelInput)({
   },
 });
 
+
+
+
 export default function PopupModal({ handleSubmit, formClose, setFormClose, setStep }) {
   const [formSubmited,setFormSubmited] = useState(false);
   //const [open, setOpen] = useState(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const {register,handleSubmit:handleSubmit2,watch,formState:{errors}} = useForm();
+
+  // const onSubmit = (data) => console.log(data);
+
+  const onSubmit = (data) => {
+    handleSubmit(true);
+  }
+
+  console.log(watch("example"));
 
   const [phone, setPhone] = React.useState("+971-2-1234567");
 
@@ -94,7 +108,7 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose, setS
             }}
           />
 
-        
+        <form onSubmit={handleSubmit2(onSubmit)}>
 
           <Grid sx={{ mt: 5 }}  gap={2} container justifyContent="space-between">
             <Grid item>
@@ -109,12 +123,14 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose, setS
             </Grid>
             <Grid item sx={{width: {md: 275, sm:'100%', xs:'100%'}}}>
               <Input
+                {...register("customer_name",{required:true})}
                 variant="outlined"
                 sx={{
                   fontFamily: Helvetica_Neue_Light.style.fontFamily,
                 }}
                 placeholder="Enter Name"
               />
+              {errors.customer_name && <span className="error" style={{fontFamily:Helvetica_Neue.style.fontFamily}}>Customer name is required</span>}
             </Grid>
           </Grid>
 
@@ -131,10 +147,12 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose, setS
             </Grid>
             <Grid item sx={{width: {md: 275, sm:'100%', xs:'100%'}}}>
               <StyledTelInput
+                {...register("mobile_no",{required:true})}
                 size="small"
                 value={phone}
                 onChange={handleChange}
               />
+              {errors.mobile_no && <span className="error" style={{fontFamily:Helvetica_Neue.style.fontFamily}}>Mobile No is required</span>}
             </Grid>
           </Grid>
 
@@ -151,12 +169,15 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose, setS
             </Grid>
             <Grid item sx={{width: {md: 275, sm:'100%', xs:'100%'}}}>
               <Input
+                {...register("salesmen_id",{required:true})}
                 variant="outlined"
                 sx={{
                   fontFamily: Helvetica_Neue_Light.style.fontFamily,
                 }}
-                placeholder="Enter Id"
+                placeholder="Enter consultant Id"
+                inputRef={field.ref}
               />
+              {errors.salesmen_id && <span className="error" style={{fontFamily:Helvetica_Neue.style.fontFamily}}>Consultant Id is required</span>}
             </Grid>
           </Grid>
 
@@ -173,13 +194,16 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose, setS
               sx={{backgroundColor:"#eaaf60",color:"#fff",'&:hover':{
                 backgroundColor:"#010101",
               }}}
-              onClick={() => handleSubmit(true)}
+              // onClick={() => handleSubmit(true)}
               size="lg"
               variant="soft"
+              type="submit"
             >
               Submit
             </Button>
           </Grid>
+
+          </form>
         </Sheet>
       </Modal>
 

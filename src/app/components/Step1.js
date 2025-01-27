@@ -64,6 +64,10 @@ const Step1 = ({successValue,page}) => {
   useEffect(()=>{
     if(successValue){
       setOpen(true);
+
+      setTimeout(()=>{
+        setOpen(false);
+      },3000);
     }
   },[successValue])
 

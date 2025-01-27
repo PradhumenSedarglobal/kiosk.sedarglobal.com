@@ -265,7 +265,7 @@ const Home = () => {
             <MenuIcon />
           </Fab>
 
-          <Carousel>
+          <Carousel selectedItem={1}>
             <div>
               <img src="./360.png" />
             </div>
