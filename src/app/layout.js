@@ -3,7 +3,7 @@ import { Nunito } from "next/font/google";
 import { DM_Serif_Text } from "next/font/google";
 
 
-import "./globals.css";
+import "./custom.css";
 import Head from "next/head";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 
