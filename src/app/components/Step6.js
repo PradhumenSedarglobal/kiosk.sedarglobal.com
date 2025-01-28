@@ -1,9 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../../app/custom.css";
-import Grid from "@mui/material/Grid";
 import { DM_Serif_Text } from "next/font/google";
-
 import { Noto_Sans } from "next/font/google";
+
+import Avatar from "@mui/joy/Avatar";
+import FormLabel from "@mui/joy/FormLabel";
+import Radio, { radioClasses } from "@mui/joy/Radio";
+import RadioGroup from "@mui/joy/RadioGroup";
+import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 
 import {
   Box,
@@ -11,10 +15,14 @@ import {
   Card,
   CardActions,
   CardContent,
+  FormControl,
+  FormControlLabel,
+  FormHelperText,
   TextField,
   Typography,
   useMediaQuery,
 } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 
 import typography, {
   Helvetica_Neue,
@@ -31,6 +39,7 @@ import typography, {
   Helvetica_Neue_Arabic,
 } from "../../theme/typography";
 import MainHeading from "./MainHeading";
+import { Sheet } from "@mui/joy";
 
 const dmserif = DM_Serif_Text({ weight: "400", subsets: ["latin"] });
 
@@ -62,7 +71,70 @@ const Step6 = () => {
             height: { lg: "calc(100vh - 240px)", overflow: "auto" },
           }}
         >
-          <Grid
+          <RadioGroup
+            defaultValue="No Track(Fabric Only)"
+            name="controlled-radio-buttons-group"
+            onChange={handleChange}
+            sx={{ my: 1, mx:3, display: "flex", flexDirection: "row", pb:15 }}
+          >
+            {/* First row with two radio buttons */}
+            <Grid container spacing={2} >
+              <Grid item xs={6}>
+                <FormControlLabel
+                  value="Corded Track"
+                  control={<Radio />}
+                  label="Corded Track"
+                  sx={{
+                    '& .MuiFormControlLabel-label': {
+                      marginLeft: '10px', 
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={6} >
+                <FormControlLabel
+                  value="Cordless Track"
+                  control={<Radio />}
+                  label="Cordless Track"
+                  sx={{
+                    '& .MuiFormControlLabel-label': {
+                      marginLeft: '10px', 
+                    },
+                  }}
+                />
+              </Grid>
+            </Grid>
+
+            {/* Second row with two radio buttons */}
+            <Grid container spacing={2}>
+              <Grid item xs={6}>
+                <FormControlLabel
+                  value="Motorized Track"
+                  control={<Radio />}
+                  label="Motorized Track"
+                  sx={{
+                    '& .MuiFormControlLabel-label': {
+                      marginLeft: '10px', 
+                    },
+                  }}
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <FormControlLabel
+                  value="No Track(Fabric Only)"
+                  control={<Radio />}
+                  label="No Track(Fabric Only)"
+                  sx={{
+                    '& .MuiFormControlLabel-label': {
+                      marginLeft: '10px', 
+                    },
+                  }}
+                />
+              </Grid>
+            </Grid>
+          </RadioGroup>
+
+          {/* <Grid
             container
             spacing={2}
             sx={{
@@ -205,7 +277,7 @@ const Step6 = () => {
                 </CardContent>
               </Card>
             </Grid>
-          </Grid>
+          </Grid> */}
         </Box>
       </Box>
     </>
