@@ -103,7 +103,7 @@ const Step4 = ({step,handleSubmit, formClose, setFormClose, setStep}) => {
                 <Grid xs={6}>Measurement</Grid>
               </Grid>
               <Grid item sx={{ mt: 2, fontSize: "small", textWrap: "nowrap" }}>
-                <Grid xs={6}>W:100cm* H:310cm</Grid>
+                <Grid xs={6}>W:100cm* H:200cm</Grid>
               </Grid>
             </Grid>
 
