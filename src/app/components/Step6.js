@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import "../../app/custom.css";
 import { DM_Serif_Text } from "next/font/google";
 import { Noto_Sans } from "next/font/google";
 

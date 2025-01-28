@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import "../../app/custom.css";
 import Grid from "@mui/material/Grid";
 import { DM_Serif_Text } from "next/font/google";
 

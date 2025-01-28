@@ -1,5 +1,6 @@
+/* styles/custom.css */
 body {
-  font-family: 'Nunito', sans-serif;
+  font-family: Nunito, sans-serif;
   margin: 0;
   background-color: #fff;
 }
@@ -8,16 +9,11 @@ body {
   background: #000;
 }
 
-/* Scrollbar styles */
-*::-webkit-scrollbar {
-  width: 0.4em;
+::-webkit-scrollbar {
+  width: .4em;
 }
 
-*::-webkit-scrollbar-track {
-  display: none;
-}
-
-*::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb, ::-webkit-scrollbar-track {
   display: none;
 }
 
@@ -26,40 +22,22 @@ body {
   overflow: hidden;
 }
 
-
-/* .css-yvl1dx-MuiGrid-root{
-    margin-left: 0 !important;
-    padding-bottom: "5px";
-  } */
-
-/* .css-1aipayh-MuiGrid-root>.MuiGrid-item{
-    padding-left: 7px !important;
-  } */
-
-.css-1vrr3d1-MuiGrid-root>.MuiGrid-item {
+.css-1vrr3d1-MuiGrid-root > .MuiGrid-item {
   padding-left: 0 !important;
 }
 
-.css-y9sd33-MuiGrid-root>.MuiGrid-item {
+.css-y9sd33-MuiGrid-root > .MuiGrid-item {
   padding-top: 0 !important;
 }
 
-/* @media only screen and (min-width: 600px) {
-  .carousel .thumb {
-    width: 120px !important;
-    height: auto;
-  }
-} */
-
-@media only screen and (min-width:900){
+@media only screen and (min-width: 900px) {
   .carousel .slide {
     object-fit: contain !important;
     height: calc(100vh - 120px) !important;
   }
 }
 
-
-.error{
+.error {
   color: red;
   font-size: smaller;
 }

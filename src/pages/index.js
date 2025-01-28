@@ -1,5 +1,5 @@
+'use client'
 import React, { useEffect, useRef, useState } from "react";
-import "../app/custom.css";
 import Grid from "@mui/material/Grid";
 
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
@@ -241,7 +241,7 @@ const Home = () => {
           xs={12}
           md={7}
           sx={{
-          
+            
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -269,7 +269,7 @@ const Home = () => {
 
          
 
-          <Carousel selectedItem={1}>
+          <Carousel selectedItem={1} >
             <div>
               <img src="./360.png" />
             </div>

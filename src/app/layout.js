@@ -3,7 +3,7 @@ import { Nunito } from "next/font/google";
 import { DM_Serif_Text } from "next/font/google";
 
 
-import "./custom.css";
+import "../app/custom.js";
 import Head from "next/head";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 
@@ -38,6 +38,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Head>
+      <link rel="stylesheet" href="../app/custom.css" /> 
         {/* Add the Google Fonts Import URL */}
         <style>
           {`@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');`}

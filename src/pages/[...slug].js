@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import "../app/custom.css";
 import Grid from "@mui/material/Grid";
 
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
