@@ -595,7 +595,7 @@ const Home = () => {
                     variant="h6"
                     component="div"
                   >
-                    YJD500-07 - Brown
+                    ALNK600-24 - Light Blue
                   </Typography>
                   <Typography
                     sx={{
@@ -609,7 +609,7 @@ const Home = () => {
                     variant="h6"
                     component="div"
                   >
-                    Pinch Pleat Curtains
+                    Ripple Fold Curtains
                   </Typography>
                 </Grid>
 
@@ -626,7 +626,7 @@ const Home = () => {
                     variant="h6"
                     component="div"
                   >
-                    Price : AED 400
+                    Price : AED 782
                   </Typography>
                 </Grid>
               </Grid>
