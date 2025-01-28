@@ -98,7 +98,9 @@ const Step4 = ({step,handleSubmit, formClose, setFormClose, setStep}) => {
               </Grid>
             </Grid>
 
-            <Grid container justifyContent="space-between">
+            <Grid container justifyContent="space-between"
+            sx={{ fontFamily: Helvetica_Neue_Regular.style.fontFamily }}
+            >
               <Grid item sx={{ mt: 2, fontSize: "small", fontWeight: "700" }}>
                 <Grid xs={6}>Measurement</Grid>
               </Grid>
@@ -107,7 +109,9 @@ const Step4 = ({step,handleSubmit, formClose, setFormClose, setStep}) => {
               </Grid>
             </Grid>
 
-            <Grid container justifyContent="space-between">
+            <Grid container justifyContent="space-between"
+            sx={{ fontFamily: Helvetica_Neue_Regular.style.fontFamily }}
+            >
               <Grid item sx={{ mt: 2, fontSize: "small", fontWeight: "700" }}>
                 <Grid xs={6}>Gathering</Grid>
               </Grid>
@@ -116,7 +120,9 @@ const Step4 = ({step,handleSubmit, formClose, setFormClose, setStep}) => {
               </Grid>
             </Grid>
 
-            <Grid container justifyContent="space-between">
+            <Grid container justifyContent="space-between"
+            sx={{ fontFamily: Helvetica_Neue_Regular.style.fontFamily }}
+            >
               <Grid item sx={{ mt: 2, fontSize: "small", fontWeight: "700" }}>
                 <Grid xs={6}>No of Pieces</Grid>
               </Grid>
@@ -125,7 +131,9 @@ const Step4 = ({step,handleSubmit, formClose, setFormClose, setStep}) => {
               </Grid>
             </Grid>
 
-            <Grid container justifyContent="space-between">
+            <Grid container justifyContent="space-between"
+            sx={{ fontFamily: Helvetica_Neue_Regular.style.fontFamily }}
+            >
               <Grid item sx={{ mt: 2, fontSize: "small", fontWeight: "700" }}>
                 <Grid xs={6}>Fabric Qty</Grid>
               </Grid>
@@ -134,7 +142,9 @@ const Step4 = ({step,handleSubmit, formClose, setFormClose, setStep}) => {
               </Grid>
             </Grid>
 
-            <Grid container justifyContent="space-between">
+            <Grid container justifyContent="space-between"
+            sx={{ fontFamily: Helvetica_Neue_Regular.style.fontFamily }}
+            >
               <Grid item sx={{ mt: 2, fontSize: "small", fontWeight: "700" }}>
                 <Grid xs={6}>Lining Option</Grid>
               </Grid>
@@ -143,7 +153,9 @@ const Step4 = ({step,handleSubmit, formClose, setFormClose, setStep}) => {
               </Grid>
             </Grid>
 
-            <Grid container justifyContent="space-between">
+            <Grid container justifyContent="space-between"
+            sx={{ fontFamily: Helvetica_Neue_Regular.style.fontFamily }}
+            >
               <Grid item sx={{ mt: 2, fontSize: "small", fontWeight: "700" }}>
                 <Grid xs={6}>Track Option</Grid>
               </Grid>
