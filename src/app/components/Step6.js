@@ -37,7 +37,7 @@ const dmserif = DM_Serif_Text({ weight: "400", subsets: ["latin"] });
 const notoSense = Noto_Sans({ weight: "400", subsets: ["latin"] });
 
 const Step6 = () => {
-  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [selectedCategory, setSelectedCategory] = useState(1);
   const selectCategoryRef = useRef();
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
 
