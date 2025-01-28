@@ -51,7 +51,7 @@ body {
   }
 
   .carousel .slide {
-    height: 600px !important;
+    height: 580px !important;
     object-fit: cover;
   }
 }

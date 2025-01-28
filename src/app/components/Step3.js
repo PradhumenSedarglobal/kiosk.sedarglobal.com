@@ -110,9 +110,10 @@ const Step3 = () => {
                 category={selectedCategory}
                 refName={selectCategoryRef}
                 index={1}
+                selected={true}
                 functionname={handleChange}
                 name="ALNK600-24"
-                img="./5.jpg"
+                img="https://api.sedarglobal.com/uploads/100001/lifestyle/1708000430_546345798927edf987f6.webp?imwidth=1920"
               />
               <ImageCard
                 category={selectedCategory}
