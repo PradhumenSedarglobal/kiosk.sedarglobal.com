@@ -121,6 +121,7 @@ const Step1 = ({successValue,page,stepcount}) => {
               index={1}
               name="Curtains & Drapes"
               link=""
+              selected={true}
               functionname={handleChange}
               img="https://api.sedarglobal.com/uploads/100001/category/thumbnail/1634388691_db8499c6f8e7e2af4f6a.jpg"
             />

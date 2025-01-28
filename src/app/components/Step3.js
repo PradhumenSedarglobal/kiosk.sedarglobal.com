@@ -112,7 +112,7 @@ const Step3 = () => {
                 index={1}
                 functionname={handleChange}
                 name="ALNK600-24"
-                img="https://api.sedarglobal.com/uploads/100001/item/laptop/1707974375_62b135de49ecaed05d00.webp?imwidth=1920"
+                img="./5.jpg"
               />
               <ImageCard
                 category={selectedCategory}

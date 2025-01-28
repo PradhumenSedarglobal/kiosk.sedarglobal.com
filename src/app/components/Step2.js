@@ -84,7 +84,7 @@ const Step2 = () => {
               >
                 Product Width (Min 100 cm - Max 500 cm)
               </InputLabel>
-              <Input  size="lg" variant="outlined" sx={{backgroundColor:"#fff"}} />
+              <Input  size="lg" variant="outlined" sx={{backgroundColor:"#fff",fontFamily: Helvetica_Neue_Regular.style.fontFamily}} value="100" />
             </Box>
             <Box>
               <InputLabel
@@ -96,7 +96,7 @@ const Step2 = () => {
               >
                 Product Height (Min 200 cm - Max 375 cm)
               </InputLabel>
-              <Input size="lg" variant="outlined" sx={{backgroundColor:"#fff"}} />
+              <Input size="lg" variant="outlined" sx={{backgroundColor:"#fff",fontFamily: Helvetica_Neue_Regular.style.fontFamily}}  value="200"/>
             </Box>
             <Box>
               <Typography
@@ -124,7 +124,7 @@ const Step2 = () => {
                     padding: "6px 10px",
                   }}
                 >
-                  <MenuItem value={1}>1</MenuItem>
+                  <MenuItem Selected value={1}>1</MenuItem>
                   <MenuItem value={2}>2</MenuItem>
                   <MenuItem value={3}>3</MenuItem>
                 </Select>

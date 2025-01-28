@@ -49,7 +49,14 @@ body {
     width: 120px !important; /* Change width as needed */
     height: auto; /* Ensure the aspect ratio is maintained */
   }
+
+  .carousel .slide {
+    height: 600px !important;
+    object-fit: cover;
+  }
 }
+
+
 
 
 

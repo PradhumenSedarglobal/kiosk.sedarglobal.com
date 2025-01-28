@@ -86,6 +86,7 @@ const Modal = () => {
               category={selectedCategory}
               refName={selectCategoryRef}
               index={1}
+              selected={true}
               name="Fabric Curtain - Eyelet"
               functionname={handleChange}
               img="https://api.sedarglobal.com/uploads/100001/lifestyle/1697618134_6e6fb48c2201f95bc514.webp?imwidth=1920"
