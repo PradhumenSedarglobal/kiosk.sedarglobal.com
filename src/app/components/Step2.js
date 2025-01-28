@@ -33,7 +33,7 @@ import typography, {
 import MainHeading from "./MainHeading";
 
 const Step2 = () => {
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState(1);
 
   const handleChangeSelect = (event) => {
     setSelectedOption(event.target.value);
@@ -121,10 +121,11 @@ const Step2 = () => {
                   onChange={handleChangeSelect}
                   size="small"
                   sx={{
+                    fontFamily: Helvetica_Neue_Regular.style.fontFamily,
                     padding: "6px 10px",
                   }}
                 >
-                  <MenuItem Selected value={1}>1</MenuItem>
+                  <MenuItem value={1}>1</MenuItem>
                   <MenuItem value={2}>2</MenuItem>
                   <MenuItem value={3}>3</MenuItem>
                 </Select>
