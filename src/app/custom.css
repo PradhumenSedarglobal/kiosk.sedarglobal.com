@@ -44,17 +44,21 @@ body {
   padding-top: 0 !important;
 }
 
-@media only screen and (min-width: 600px) {
+/* @media only screen and (min-width: 600px) {
   .carousel .thumb {
-    width: 120px !important; /* Change width as needed */
-    height: auto; /* Ensure the aspect ratio is maintained */
+    width: 120px !important;
+    height: auto;
   }
+} */
 
+@media only screen and (min-width:900){
   .carousel .slide {
-    height: 580px !important;
-    object-fit: cover;
+    object-fit: contain !important;
+    height: calc(100vh - 120px) !important;
   }
 }
+
+
 
 
 
