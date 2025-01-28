@@ -90,11 +90,47 @@ const Step4 = ({step,handleSubmit, formClose, setFormClose, setStep}) => {
               sx={{ fontFamily: Helvetica_Neue_Regular.style.fontFamily }}
             >
               <Grid item sx={{ mt: 2, fontSize: "small", fontWeight: "700" }}>
-                <Grid xs={6}>Quantity</Grid>
+                <Grid xs={6}>Color</Grid>
               </Grid>
 
               <Grid item sx={{ mt: 2, fontSize: "small", textWrap: "nowrap" }}>
-                <Grid xs={6}>1 Qty</Grid>
+                <Grid xs={6}>YJD500-07 -Brown</Grid>
+              </Grid>
+            </Grid>
+
+            <Grid container justifyContent="space-between">
+              <Grid item sx={{ mt: 2, fontSize: "small", fontWeight: "700" }}>
+                <Grid xs={6}>Measurement</Grid>
+              </Grid>
+              <Grid item sx={{ mt: 2, fontSize: "small", textWrap: "nowrap" }}>
+                <Grid xs={6}>W:100cm* H:310cm</Grid>
+              </Grid>
+            </Grid>
+
+            <Grid container justifyContent="space-between">
+              <Grid item sx={{ mt: 2, fontSize: "small", fontWeight: "700" }}>
+                <Grid xs={6}>Gathering</Grid>
+              </Grid>
+              <Grid item sx={{ mt: 2, fontSize: "small", textWrap: "nowrap" }}>
+                <Grid xs={6}>Standard</Grid>
+              </Grid>
+            </Grid>
+
+            <Grid container justifyContent="space-between">
+              <Grid item sx={{ mt: 2, fontSize: "small", fontWeight: "700" }}>
+                <Grid xs={6}>No of Pieces</Grid>
+              </Grid>
+              <Grid item sx={{ mt: 2, fontSize: "small", textWrap: "nowrap" }}>
+                <Grid xs={6}>1 Pcs</Grid>
+              </Grid>
+            </Grid>
+
+            <Grid container justifyContent="space-between">
+              <Grid item sx={{ mt: 2, fontSize: "small", fontWeight: "700" }}>
+                <Grid xs={6}>Fabric Qty</Grid>
+              </Grid>
+              <Grid item sx={{ mt: 2, fontSize: "small", textWrap: "nowrap" }}>
+                <Grid xs={6}>12 LMT</Grid>
               </Grid>
             </Grid>
 
@@ -112,9 +148,10 @@ const Step4 = ({step,handleSubmit, formClose, setFormClose, setStep}) => {
                 <Grid xs={6}>Track Option</Grid>
               </Grid>
               <Grid item sx={{ mt: 2, fontSize: "small", textWrap: "nowrap" }}>
-                <Grid xs={6}>No Track (Fabric Only)</Grid>
+                <Grid xs={6}>No Track(Fabric Only)</Grid>
               </Grid>
             </Grid>
+
           </Grid>
         </Box>
       </Box>
