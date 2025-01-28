@@ -582,6 +582,8 @@ const Home = () => {
                 }}
               >
                 <Grid item xs={7} pt={"0 !important"}>
+                {step !== 5 && (
+                  <>
                   <Typography
                     sx={{
                       fontFamily: Helvetica_Neue_Regular.style.fontFamily,
@@ -611,6 +613,8 @@ const Home = () => {
                   >
                     Ripple Fold Curtains
                   </Typography>
+                  </>
+                )}
                 </Grid>
 
                 <Grid item xs={5} pt={"0 !important"}>
@@ -629,6 +633,7 @@ const Home = () => {
                     Price : AED 782
                   </Typography>
                 </Grid>
+
               </Grid>
 
               <Grid

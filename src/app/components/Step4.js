@@ -81,7 +81,7 @@ const Step4 = ({step,handleSubmit, formClose, setFormClose, setStep}) => {
               variant="h6"
               component="div"
             >
-              Pinch Pleat Curtain
+              Ripple Fold Curtains
             </Typography>
 
             <Grid
