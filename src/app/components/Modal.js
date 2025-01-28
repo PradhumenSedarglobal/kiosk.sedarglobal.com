@@ -82,14 +82,15 @@ const Modal = () => {
               pb: {sm:20,xs:20,md:5,lg:5}
             }}
           >
-            <ImageCard
+             <ImageCard
               category={selectedCategory}
               refName={selectCategoryRef}
               index={1}
               selected={true}
-              name="Fabric Curtain - Eyelet"
+              name="Ripple Fold"
               functionname={handleChange}
               img="https://api.sedarglobal.com/uploads/100001/lifestyle/1697618134_6e6fb48c2201f95bc514.webp?imwidth=1920"
+              
             />
 
           <ImageCard
@@ -101,15 +102,17 @@ const Modal = () => {
               img="https://api.sedarglobal.com/uploads/100001/lifestyle/1707808691_60e89e939d376706dabd.webp?imwidth=200"
             />
 
-
             <ImageCard
               category={selectedCategory}
               refName={selectCategoryRef}
               index={3}
-              name="Ripple Fold"
+              name="Fabric Curtain - Eyelet"
               functionname={handleChange}
               img="https://api.sedarglobal.com/uploads/100001/lifestyle/1708000430_546345798927edf987f6.webp?imwidth=200"
             />
+
+
+           
 
           
 
