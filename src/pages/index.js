@@ -31,6 +31,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
+import HomeIcon from '@mui/icons-material/Home';
 
 import { NextResponse } from 'next/server'
 
@@ -72,6 +73,7 @@ import typography, {
 import PopupModal from "@/app/components/PopupModal";
 import ScanModal from "@/app/components/ScanModal";
 import { ModalClose, ModalDialog, Sheet } from "@mui/joy";
+import { Router } from "next/router";
 
 const drawerWidth = 400;
 
@@ -121,13 +123,6 @@ const AppBar = styled(MuiAppBar, {
   ],
 }));
 
-export function middleware(request) {
-  return NextResponse.redirect(new URL('/', request.url))
-}
-
-export const config = {
-  matcher: '/about/:path*',
-}
 
 
 const Home = () => {
@@ -139,6 +134,7 @@ const Home = () => {
   const [open, setOpen] = React.useState(false);
   const [openModal2, setOpenModal2] = useState(false);
   const [lastPage,setLastPage] = useState();
+  const [formClose,setFormClose] = useState(false);
   
 
   const handleChange = (index) => {
@@ -182,7 +178,7 @@ const Home = () => {
   };
 
  
-  const [formClose,setFormClose] = useState(false);
+  
 
  
 
@@ -225,6 +221,11 @@ const Home = () => {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+
+  const handleHome = () => {
+    console.log('c');
+    window.location.reload(); 
   };
 
   return (
@@ -666,6 +667,25 @@ const Home = () => {
                       startIcon={<ArrowCircleLeftIcon />}
                     >
                       Back
+                    </Button>
+                  )}
+
+                {step == 0 && (
+                    <Button
+                      sx={{
+                        display: "flex",
+                        backgroundColor: "#ef9c00",
+                        color: "#f5ece0",
+                        fontFamily: Helvetica_Neue_Regular.style.fontFamily,
+                        justifyContent: "flex-start",
+                        alignItems: "start",
+                      }}
+                      onClick={() => handleHome()}
+                      size="large"
+                      variant="contained"
+                      startIcon={<HomeIcon />}
+                    >
+                      Home
                     </Button>
                   )}
                 </Grid>
