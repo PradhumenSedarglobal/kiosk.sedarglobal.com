@@ -286,16 +286,23 @@ const Home = () => {
     "./1.jpg",
   ];
 
-  const handle3d = (index) => {
-    console.log("handle3d", index);
-    if (index == 0) {
-      
-      setShow3d(true);
-    } else {
-      setActiveIndex(index);
-      setShow3d(false);
-    }
+ 
+
+  const [allowNextSlide, setAllowNextSlide] = useState(false);
+  
+  // Function to handle clicking on a thumbnail
+  const handleThumbnailClick = (index) => {
+    // Update the state to allow sliding when a thumbnail is clicked
+    setAllowNextSlide(true);
+    thumbsSwiper.slideTo(index);  // Move the main swiper to the clicked index
   };
+
+   // Function to handle the 3D scene (this logic might depend on your setup)
+   const handle3d = (index) => {
+    setAllowNextSlide(false);  // Disable next slide when the 3D scene is active
+  };
+
+
 
 
 
@@ -354,106 +361,88 @@ const Home = () => {
           </Fab>
 
           <>
-            <main>
-              {/* Main Swiper -> pass thumbs swiper instance */}
-              <Swiper
-                modules={[Thumbs]}
-                thumbs={{ swiper: thumbsSwiper }}
-                spaceBetween={10}
-                slidesPerView={1}
-                loop={true}
-                initialSlide={1}
-                
-              >
-                {/* {show3d && (
-                 
-                )} */}
-
-                 
-                    { imageUrls.map((src, index) => (
-                        <SwiperSlide key={index}>
-                          
-                          
-                             {index == 0 && (
-                                <SceneCanvas3D
-                                langName="en"
-                                actions=""
-                                productInfo=""
-                                headerData=""
-                                material={material}
-                                {...data}
-                                
-                              />
-                             )}
-
-                             {index != 0 && (
-                                <img
-                                src={src}
-                                className="swiper-image" 
-                                style={{
-                                  width: "100%",
-                                  objectFit: "cover",
-                                }}
-                                alt={`Image ${index + 1}`}
-                              />
-                             )}
-                          
-                              
-                          
-                        
-                        </SwiperSlide>
-                      )) }
-                  
-
-              </Swiper>
-
-              {/* Thumbs Swiper -> store swiper instance */}
-              {/* It is also required to set watchSlidesProgress prop */}
-              <Swiper
-                modules={[Thumbs]}
-                watchSlidesProgress
-                onSwiper={setThumbsSwiper}
-                spaceBetween={5}
-                slidesPerView={6}
-                loop={true}
-                
-                slideToClickedSlide
+          <main>
+      {/* Main Swiper -> pass thumbs swiper instance */}
+      <Swiper
+        modules={[Thumbs]}
+        thumbs={{ swiper: thumbsSwiper }}
+        spaceBetween={10}
+        slidesPerView={1}
+        allowTouchMove={false}
+        loop={false}
+        initialSlide={1}
+        allowSlideNext={allowNextSlide}  
+      >
+        {imageUrls.map((src, index) => (
+          <SwiperSlide key={index}>
+            {index === 0 ? (
+              <SceneCanvas3D
+                langName="en"
+                actions=""
+                productInfo=""
+                headerData=""
+                material={material}
+                {...data}
+              />
+            ) : (
+              <img
+                src={src}
+                className="swiper-image"
                 style={{
-                  marginLeft:"3px"
+                  width: "100%",
+                  objectFit: "cover",
                 }}
-                breakpoints={{
-                  // Responsive behavior for mobile devices
-                  320: { slidesPerView: 3, spaceBetween: 5 }, 
-                  480: { slidesPerView: 4, spaceBetween: 10 }, 
-                  768: { slidesPerView: 5, spaceBetween: 10 }, 
-                  1024: { slidesPerView: 6, spaceBetween: 15 }, 
-                }}
-              >
-                {imageUrls.map((src, index) => (
-                 
-                  <SwiperSlide key={index}>
-                    
-                    <img
-                      src={src}
-                      height={90}
-                      width={100}
-                      style={{
-                        border: index === 0 
-                          ? '2px solid orange' 
-                          : activeIndex === index 
-                            ? '2px solid #010101' 
-                            : '', // No border if it's not selected or the first one
-                        marginTop: '1px'
-                      }}
-                      onClick={() => {
-                        handle3d(index);
-                      }}
-                      alt={`Thumbnail ${index + 1}`}
-                    />
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </main>
+                alt={`Image ${index + 1}`}
+              />
+            )}
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      {/* Thumbs Swiper -> store swiper instance */}
+      <Swiper
+        modules={[Thumbs]}
+        watchSlidesProgress
+        onSwiper={setThumbsSwiper}
+        spaceBetween={5}
+        slidesPerView={6}
+        loop={true}
+        allowSlideNext={true}  
+        slideToClickedSlide
+        style={{
+          marginLeft: "3px",
+        }}
+        breakpoints={{
+          320: { slidesPerView: 3, spaceBetween: 5 },
+          480: { slidesPerView: 4, spaceBetween: 10 },
+          768: { slidesPerView: 5, spaceBetween: 10 },
+          1024: { slidesPerView: 6, spaceBetween: 15 },
+        }}
+      >
+        {imageUrls.map((src, index) => (
+          <SwiperSlide key={index}>
+            <img
+              src={src}
+              height={90}
+              width={100}
+              style={{
+                border: index === 0
+                  ? '2px solid orange'
+                  : activeIndex === index
+                  ? '2px solid #010101'
+                  : '', // Add a border if it's active
+                marginTop: '1px',
+              }}
+              onClick={() => {
+                handleThumbnailClick(index);
+              }}
+              alt={`Thumbnail ${index + 1}`}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </main>
+
           </>
 
           {/* <ThreeDImageViewer imageSrc="https://api.sedarglobal.com/uploads/100001/scene/1637144847_79f8a2b53836e773a8df.jpg" /> */}
