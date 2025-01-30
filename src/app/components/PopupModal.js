@@ -28,6 +28,8 @@ import { Grid, Sheet, styled } from "@mui/joy";
 import { MarginRounded } from "@mui/icons-material";
 import Step4 from "./Step4";
 import Home from "@/pages";
+import { useDispatch } from "react-redux";
+import { manualStep } from "../lib/redux/slices/stepSlice";
 
 
 const style = {
@@ -60,7 +62,7 @@ const StyledTelInput = styled(MuiTelInput)({
 
 
 
-export default function PopupModal({ handleSubmit, formClose, setFormClose, setStep }) {
+export default function PopupModal({ handleSubmit, formClose, setFormClose }) {
   const [formSubmited,setFormSubmited] = useState(false);
   //const [open, setOpen] = useState(true);
   const handleOpen = () => setOpen(true);
@@ -83,6 +85,8 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose, setS
     setPhone(newPhone);
   };
 
+  const dispatch = useDispatch();
+
 
   return (
     <div>
@@ -93,7 +97,7 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose, setS
         onClose={(_event, reason) =>{
           if (reason && reason === "backdropClick")
             return;
-          handleSubmit('close'); setFormClose(false); setStep(5)
+          handleSubmit('close'); setFormClose(false); dispatch(manualStep(5))
         }}
         
         sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}

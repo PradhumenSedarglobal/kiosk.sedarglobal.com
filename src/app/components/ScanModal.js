@@ -12,6 +12,8 @@ import Image from "next/image";
 import { Helvetica_Neue_Bold } from "../../theme/typography";
 import { useRouter } from "next/router";
 import { useMediaQuery } from "@mui/material";
+import { showScanner } from "../lib/redux/slices/scannerSlice";
+import { useDispatch } from "react-redux";
 
 export default function ScanModal() {
   const [scaner, setScaner] = useState(false);
@@ -45,6 +47,7 @@ export default function ScanModal() {
   }, [data]);
 
 
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -70,7 +73,8 @@ export default function ScanModal() {
             overflow: "auto", // Add scroll if content overflows
           }}
         >
-          <ModalClose ref={modalRef} variant="plain" sx={{ m: 1 }} />
+          <ModalClose ref={modalRef} onClick={() => dispatch(showScanner(false))} variant="plain" sx={{ m: 1 }} />
+
 
           <Grid
             container
@@ -119,7 +123,7 @@ export default function ScanModal() {
                       level="title-md"
                       
                     >
-                      Scan your product
+                      Scan a product
                     </Typography>
                   </CardContent>
                 </Card>

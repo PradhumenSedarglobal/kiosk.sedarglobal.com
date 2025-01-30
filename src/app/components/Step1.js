@@ -43,6 +43,7 @@ import { ModalClose, ModalDialog } from "@mui/joy";
 import Image from "next/image";
 
 
+
 const dmserif = DM_Serif_Text({ weight: "400", subsets: ["latin"] });
 
 const notoSense = Noto_Sans({ weight: "400", subsets: ["latin"] });
@@ -75,12 +76,14 @@ const Step1 = ({successValue,page,stepcount}) => {
     }
   },[successValue])
 
+
+
   
 
   return (
     <>
       {/* Middle Content */}
-
+      
       {successValue && stepcount != 1 && (
           <Modal open={open}>
           <ModalDialog onClick={()=>setOpen(false)}>

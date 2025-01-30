@@ -9,6 +9,7 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 
 
 
+
 const dmSerifText = DM_Serif_Text({
   weight: "400", 
   subsets: ["latin"], 
@@ -47,9 +48,9 @@ export default function RootLayout({ children }) {
       </Head>
       <body className={`${nunito.variable} ${nunito.variable}`}>
         <AppRouterCacheProvider>
-            
+           
               {children}
-            
+             
         </AppRouterCacheProvider>
       </body>
     </html>

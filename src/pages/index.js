@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useEffect, useRef, useState } from "react";
 import Grid from "@mui/material/Grid";
 
@@ -31,10 +31,18 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import HomeIcon from '@mui/icons-material/Home';
+import HomeIcon from "@mui/icons-material/Home";
 
-import { NextResponse } from 'next/server'
+import { NextResponse } from "next/server";
+import { useDispatch, useSelector } from "react-redux";
+import ProductThumbSwiper from "@/modules/productThumbSwiper";
 
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Thumbs } from "swiper/modules";
+
+// Import Swiper styles
+import "swiper/css";
 
 import {
   Box,
@@ -74,6 +82,14 @@ import PopupModal from "@/app/components/PopupModal";
 import ScanModal from "@/app/components/ScanModal";
 import { ModalClose, ModalDialog, Sheet } from "@mui/joy";
 import { Router } from "next/router";
+import ThreeDImageViewer from "@/app/components/ThreeDImageViewer";
+import {
+  decrementStep,
+  incrementStep,
+  manualStep,
+} from "@/app/lib/redux/slices/stepSlice";
+import { showScanner } from "@/app/lib/redux/slices/scannerSlice";
+import SceneCanvas3D from "@/app/components/SceneCanvas3D";
 
 const drawerWidth = 400;
 
@@ -123,67 +139,100 @@ const AppBar = styled(MuiAppBar, {
   ],
 }));
 
-
-
 const Home = () => {
   const [success2, setSuccess2] = useState(false);
   const [scanModal, setScanModal] = useState(false);
-  const [step, setStep] = useState(0);
-  const selectCategoryRef = useRef();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-  const [openModal2, setOpenModal2] = useState(false);
-  const [lastPage,setLastPage] = useState();
-  const [formClose,setFormClose] = useState(false);
-  
+  const [lastPage, setLastPage] = useState();
+  const [formClose, setFormClose] = useState(false);
+  const [data, setData] = useState({});
+  const [material, setMaterialData] = useState({});
+  const [stepTF, setStepTF] = useState(true);
+  const [show3d, setShow3d] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const stepCount = useSelector((state) => state.step.value);
+  const scanner = useSelector((state) => state.scanner.value);
+  const dispatch = useDispatch();
+
+
+
+  const fetchData = async () => {
+    await fetch(
+      "https://uatapi.sedarglobal.com/kiosk/get_steps?category=curtains-and-drapes&sys_id=0&visitorId=0"
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res, "res");
+        setData(res.result[0]);
+        setMaterialData(
+          res.result?.[1]?.[2]?.["CHILD_STEP"]?.[1]?.["SUB_CHILD"]?.[0]
+        );
+        setStepTF(false);
+        // setStepsData(response.result['COMPONENT'][0]['PARENT']);
+      });
+  };
+
+  useEffect(() => {
+    if (stepTF) {
+      fetchData();
+    }
+  }, [stepTF]);
+  console.log("scanner", scanner);
 
   const handleChange = (index) => {
     setSelectedCategory(index);
   };
 
+  const handleHome = () => {
+    console.log("ddd");
+    dispatch(showScanner(true));
+  };
+
   useEffect(() => {
-    setScanModal(true);
+    console.log("modal open");
+  }, [scanModal]);
+
+  useEffect(() => {
+    dispatch(showScanner(true));
   }, []);
 
   const nextStep = () => {
-    console.log(step, 'dddd');
-    
-    if (step < 5) {
-      setStep(step + 1);
-    }else{
+    console.log(stepCount, "dddd");
+
+    if (stepCount < 5) {
+      dispatch(incrementStep(stepCount));
+    } else {
       setFormClose(true);
     }
   };
 
   const previousStep = () => {
-    setLastPage(step);
-    if (step > 0) {
-      setStep(step - 1);
+    setLastPage(stepCount);
+    if (stepCount > 0) {
+      dispatch(decrementStep(stepCount));
     }
   };
 
-  
-
   const handleSubmit = (submited) => {
     console.log(submited, "value");
-    if(submited == 'close'){
-      setStep(5); 
+    if (submited == "close") {
+      dispatch(manualStep(5));
       return false;
     }
     if (submited == true) {
       setSuccess2(true);
-    } 
+    }
 
-    setStep(0); 
+    dispatch(manualStep(0));
   };
 
- 
-  
-
- 
+  // store thumbs swiper instance
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
   const renderStep = () => {
-    switch (step) {
+    switch (stepCount) {
       case 0:
         return <Step1 successValue={success2} stepcount={lastPage} />;
       case 1:
@@ -195,12 +244,13 @@ const Home = () => {
       case 4:
         return <Step6 />;
       case 5:
-        return <Step4 step={step} 
-          handleSubmit={handleSubmit} 
-          formClose={formClose} 
-          setFormClose={setFormClose}
-          setStep={setStep}
-          />;
+        return (
+          <Step4
+            handleSubmit={handleSubmit}
+            formClose={formClose}
+            setFormClose={setFormClose}
+          />
+        );
       default:
         return null;
     }
@@ -223,26 +273,61 @@ const Home = () => {
     setOpen(false);
   };
 
-  const handleHome = () => {
-    console.log('c');
-    window.location.reload(); 
+  useEffect(() => {
+    console.log("Updated scanner state:", scanner);
+  }, [scanner]);
+
+  const imageUrls = [
+    "./360v.jpg",
+    "./5.jpg",
+    "./4.jpg",
+    "./3.jpg",
+    "./2.jpg",
+    "./1.jpg",
+  ];
+
+  const handle3d = (index) => {
+    console.log("handle3d", index);
+    if (index == 0) {
+      
+      setShow3d(true);
+    } else {
+      setActiveIndex(index);
+      setShow3d(false);
+    }
   };
+
+
 
   return (
     //isSmallScreen  ? "100vh" :
     <>
-   
-  
-      {scanModal && <ScanModal />}
+      {/* <ProductThumbSwiper
+      data={["http://localhost:3000/360.png", "http://localhost:3000/5.jpg", "http://localhost:3000/4.jpg", "http://localhost:3000/3.jpg", "http://localhost:3000/2.jpg"]}
+      url={''}
+      defaultSelectItem={0}
+    /> */}
 
-      <Grid container sx={{ height: { maxWidth:"1920px",margin:"auto", lg: "none", md: "100vh", sm: "100vh" } }}>
+      {scanner && <ScanModal />}
+
+      <Grid
+        container
+        sx={{
+          height: {
+            maxWidth: "1920px",
+            margin: "auto",
+            lg: "none",
+            md: "100vh",
+            sm: "100vh",
+          },
+        }}
+      >
         {/* Image Container */}
         <Grid
           item
           xs={12}
           md={7}
           sx={{
-            
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundRepeat: "no-repeat",
@@ -268,9 +353,112 @@ const Home = () => {
             <MenuIcon />
           </Fab>
 
-         
+          <>
+            <main>
+              {/* Main Swiper -> pass thumbs swiper instance */}
+              <Swiper
+                modules={[Thumbs]}
+                thumbs={{ swiper: thumbsSwiper }}
+                spaceBetween={10}
+                slidesPerView={1}
+                loop={true}
+                initialSlide={1}
+                
+              >
+                {/* {show3d && (
+                 
+                )} */}
 
-          <Carousel selectedItem={1} >
+                 
+                    { imageUrls.map((src, index) => (
+                        <SwiperSlide key={index}>
+                          
+                          
+                             {index == 0 && (
+                                <SceneCanvas3D
+                                langName="en"
+                                actions=""
+                                productInfo=""
+                                headerData=""
+                                material={material}
+                                {...data}
+                                
+                              />
+                             )}
+
+                             {index != 0 && (
+                                <img
+                                src={src}
+                                className="swiper-image" 
+                                style={{
+                                  width: "100%",
+                                  objectFit: "cover",
+                                }}
+                                alt={`Image ${index + 1}`}
+                              />
+                             )}
+                          
+                              
+                          
+                        
+                        </SwiperSlide>
+                      )) }
+                  
+
+              </Swiper>
+
+              {/* Thumbs Swiper -> store swiper instance */}
+              {/* It is also required to set watchSlidesProgress prop */}
+              <Swiper
+                modules={[Thumbs]}
+                watchSlidesProgress
+                onSwiper={setThumbsSwiper}
+                spaceBetween={5}
+                slidesPerView={6}
+                loop={true}
+                
+                slideToClickedSlide
+                style={{
+                  marginLeft:"3px"
+                }}
+                breakpoints={{
+                  // Responsive behavior for mobile devices
+                  320: { slidesPerView: 3, spaceBetween: 5 }, 
+                  480: { slidesPerView: 4, spaceBetween: 10 }, 
+                  768: { slidesPerView: 5, spaceBetween: 10 }, 
+                  1024: { slidesPerView: 6, spaceBetween: 15 }, 
+                }}
+              >
+                {imageUrls.map((src, index) => (
+                 
+                  <SwiperSlide key={index}>
+                    
+                    <img
+                      src={src}
+                      height={90}
+                      width={100}
+                      style={{
+                        border: index === 0 
+                          ? '2px solid orange' 
+                          : activeIndex === index 
+                            ? '2px solid #010101' 
+                            : '', // No border if it's not selected or the first one
+                        marginTop: '1px'
+                      }}
+                      onClick={() => {
+                        handle3d(index);
+                      }}
+                      alt={`Thumbnail ${index + 1}`}
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </main>
+          </>
+
+          {/* <ThreeDImageViewer imageSrc="https://api.sedarglobal.com/uploads/100001/scene/1637144847_79f8a2b53836e773a8df.jpg" /> */}
+
+          {/* <Carousel selectedItem={1} >
             <div>
               <img src="./360.png" />
             </div>
@@ -294,7 +482,7 @@ const Home = () => {
             <div>
               <img src="./1.jpg" />
             </div>
-          </Carousel>
+          </Carousel> */}
         </Grid>
 
         {/* Input Container */}
@@ -306,10 +494,9 @@ const Home = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            
           }}
         >
-          <Box sx={{  width: "100%" }}>
+          <Box sx={{ width: "100%" }}>
             <Drawer
               sx={{
                 width: { md: drawerWidth, sm: "100%", xs: "100%" },
@@ -546,8 +733,6 @@ const Home = () => {
               </List>
             </Drawer>
 
-            
-
             {renderStep()}
 
             {/* Bottom Bar */}
@@ -562,7 +747,7 @@ const Home = () => {
                   md: "fixed",
                   sm: "fixed",
                 },
-                overflow:"hidden",
+                overflow: "hidden",
                 bottom: { xs: 0, md: 0, sm: 0 }, // Stick to the bottom on small screens
                 left: 0, // Ensure it stays on the left side
                 zIndex: 1000, // Bring it on top of other elements
@@ -582,39 +767,39 @@ const Home = () => {
                 }}
               >
                 <Grid item xs={7} pt={"0 !important"}>
-                {step !== 5 && (
-                  <>
-                  <Typography
-                    sx={{
-                      fontFamily: Helvetica_Neue_Regular.style.fontFamily,
-                      color: "#010101",
-                      paddingTop: "25px",
-                      textAlign: "start",
-                      fontSize: "small",
-                      // paddingLeft: "20px",
-                    }}
-                    gutterBottom
-                    variant="h6"
-                    component="div"
-                  >
-                    ALNK600-24 - Light Blue
-                  </Typography>
-                  <Typography
-                    sx={{
-                      fontFamily: Helvetica_Neue_Bold.style.fontFamily,
-                      color: "#010101",
-                      textAlign: "start",
-                      fontSize: "medium",
-                      // paddingLeft: "20px",
-                    }}
-                    gutterBottom
-                    variant="h6"
-                    component="div"
-                  >
-                    Ripple Fold Curtains
-                  </Typography>
-                  </>
-                )}
+                  {stepCount !== 5 && (
+                    <>
+                      <Typography
+                        sx={{
+                          fontFamily: Helvetica_Neue_Regular.style.fontFamily,
+                          color: "#010101",
+                          paddingTop: "25px",
+                          textAlign: "start",
+                          fontSize: "small",
+                          // paddingLeft: "20px",
+                        }}
+                        gutterBottom
+                        variant="h6"
+                        component="div"
+                      >
+                        ALNK600-24 - Light Blue
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontFamily: Helvetica_Neue_Bold.style.fontFamily,
+                          color: "#010101",
+                          textAlign: "start",
+                          fontSize: "medium",
+                          // paddingLeft: "20px",
+                        }}
+                        gutterBottom
+                        variant="h6"
+                        component="div"
+                      >
+                        Ripple Fold Curtains
+                      </Typography>
+                    </>
+                  )}
                 </Grid>
 
                 <Grid item xs={5} pt={"0 !important"}>
@@ -633,7 +818,6 @@ const Home = () => {
                     Price : AED 782
                   </Typography>
                 </Grid>
-
               </Grid>
 
               <Grid
@@ -656,7 +840,7 @@ const Home = () => {
                     alignItems: "start",
                   }}
                 >
-                  {step > 0 && (
+                  {stepCount > 0 && (
                     <Button
                       sx={{
                         display: "flex",
@@ -675,7 +859,7 @@ const Home = () => {
                     </Button>
                   )}
 
-                {step == 0 && (
+                  {stepCount == 0 && (
                     <Button
                       sx={{
                         display: "flex",
@@ -703,7 +887,7 @@ const Home = () => {
                     alignItems: "end",
                   }}
                 >
-                  {step < 5 && (
+                  {stepCount < 5 && (
                     <Button
                       sx={{
                         display: "flex",
@@ -723,7 +907,7 @@ const Home = () => {
                     </Button>
                   )}
 
-                  {step === 5 && (
+                  {stepCount === 5 && (
                     <Button
                       sx={{
                         display: "flex",

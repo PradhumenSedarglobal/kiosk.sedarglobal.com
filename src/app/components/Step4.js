@@ -31,20 +31,25 @@ import typography, {
 import Grid from "@mui/material/Grid2";
 import MainHeading from "./MainHeading";
 import PopupModal from "./PopupModal";
+import { useSelector } from "react-redux";
 
-const Step4 = ({step,handleSubmit, formClose, setFormClose, setStep}) => {
-  console.log(step, formClose, 'fdd')
+
+const Step4 = ({handleSubmit, formClose, setFormClose}) => {
+  const stepCount =  useSelector((state) => state.step.value);
+  console.log(stepCount, formClose, 'fdd')
+
+
   return (
     <>
 
       {/* Popup modal  */}
 
-      {step == 5  && formClose && (
+      {stepCount == 5  && formClose && (
         <PopupModal 
           handleSubmit={handleSubmit} 
           formClose={formClose} 
           setFormClose={setFormClose}
-          setStep={setStep}
+        
           />
       )}
 
