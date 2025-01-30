@@ -377,12 +377,12 @@ const SceneCanvas3D = (props) => {
       camera.updateProjectionMatrix();
       // renderer.setSize(re_width, window.innerHeight);
 
-      if (window.innerWidth <= 576) {
-        renderer.setSize(ref?.current?.offsetWidth, window.innerWidth - 100);
-      } else {
-        renderer.setSize(ref?.current?.offsetWidth, window.innerHeight);
-      }
-    }
+      // if (window.innerWidth <= 576) {
+      //   renderer.setSize(ref?.current?.offsetWidth, window.innerWidth - 100);
+      // } else {
+      //   renderer.setSize(ref?.current?.offsetWidth, window.innerHeight);
+      // }
+    } 
   };
   const animate = () => {
     requestAnimationFrame(animate);

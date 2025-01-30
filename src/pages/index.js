@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Grid from "@mui/material/Grid";
 
+
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
@@ -155,6 +156,8 @@ const Home = () => {
   const stepCount = useSelector((state) => state.step.value);
   const scanner = useSelector((state) => state.scanner.value);
   const dispatch = useDispatch();
+
+  const isSmallScreen = useMediaQuery('(man-width: 376px)');
 
 
 

@@ -37,15 +37,26 @@ body {
 /* Smaller screens (sm, xs) */
 @media (max-width: 768px) {
   .swiper-image {
-    height: calc(100vh - 240px) ;  /* Adjust for smaller screens */
+    height: calc(100vh - 240px); /* Adjust for smaller screens */
+  }
+
+  #CanvasId3D canvas {
+    width: 100vw !important; /* No need for calc(100vw - 0px) */
+    height: calc(100vh - 100px) !important; /* Maintain height adjustment */
   }
 }
 
 @media (max-width: 480px) {
   .swiper-image {
-    height: calc(100vh - 240px);  /* For very small screens like mobile */
+    height: calc(100vh - 240px); /* Consistent height for mobile */
+  }
+
+  #CanvasId3D canvas {
+    width: 100vw !important; /* No need for calc(100vw - 0px) */
+    height: calc(100vh - 244px) !important; /* Maintain height adjustment */
   }
 }
+
 
 
 .error {
