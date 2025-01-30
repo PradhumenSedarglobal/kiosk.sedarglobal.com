@@ -98,7 +98,7 @@ let onMouseDownMouseX = 0,
   onMouseDownLon = 0,
   onMouseDownLat = 0;
 let isUserInteracting = false;
-let camera_fov = 80;
+let camera_fov = 85;
 let camera_near = 0.1;
 let camera_far = 1000;
 let zoom_slider = 0;
@@ -171,9 +171,10 @@ const SceneCanvas3D = (props) => {
   lon = props.SSC_SCENE_LONGITUDE ? parseInt(props.SSC_SCENE_LONGITUDE) : lon;
   lat = props.OBJ_LATITUDE ? parseInt(props.OBJ_LATITUDE) : lat;
   old_lon = lon;
-  camera_fov = props.SSC_FOV_LENGTH
-    ? parseInt(props.SSC_FOV_LENGTH)
-    : camera_fov;
+  // camera_fov = props.SSC_FOV_LENGTH
+  //   ? parseInt(props.SSC_FOV_LENGTH)
+  //   : camera_fov;
+  camera_fov = camera_fov;
   camera_near = props.SSC_CAMERA_NEAR_LENGTH
     ? props.SSC_CAMERA_NEAR_LENGTH
     : camera_near;
