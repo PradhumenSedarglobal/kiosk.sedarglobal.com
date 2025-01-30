@@ -17,13 +17,15 @@ const initialState = {
   priceArray: {},
   filterOption: {},
   materialList: [],
-  headerData: []
+  headerData: [],
+
 };
 
 const slice = createSlice({
   name: "customization",
   initialState,
   reducers: {
+
     // START Faqs
     startCustomizationLoading(state) {
       state.isCustomizationLoading = true;
@@ -166,7 +168,7 @@ const slice = createSlice({
     },
   },
 
-  // Special reducer for hydrating the state. Special case for next-redux-wrapper
+  
   extraReducers: (builder) => {
     builder.addCase(HYDRATE, (state, action) => {
       return {
@@ -175,6 +177,8 @@ const slice = createSlice({
       };
     });
   },
+
+
 });
 
 // Reducer

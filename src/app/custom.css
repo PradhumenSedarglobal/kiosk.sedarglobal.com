@@ -29,7 +29,7 @@ body {
 
 /* Default height for larger screens */
 .swiper-image {
-  height: calc(100vh - 130px);  /* For larger screens (desktop) */
+  height: calc(100vh - 130px); 
   width: 100%;
   object-fit: cover;
 }
@@ -37,23 +37,23 @@ body {
 /* Smaller screens (sm, xs) */
 @media (max-width: 768px) {
   .swiper-image {
-    height: calc(100vh - 240px); /* Adjust for smaller screens */
+    height: calc(100vh - 240px);
   }
 
   #CanvasId3D canvas {
-    width: 100vw !important; /* No need for calc(100vw - 0px) */
-    height: calc(100vh - 100px) !important; /* Maintain height adjustment */
+    width: 100vw !important; 
+    height: calc(100vh - 100px) !important; 
   }
 }
 
 @media (max-width: 480px) {
   .swiper-image {
-    height: calc(100vh - 400px); /* Consistent height for mobile */
+    height: calc(100vh - 400px); 
   }
 
   #CanvasId3D canvas {
-    width: 100vw !important; /* No need for calc(100vw - 0px) */
-    height: calc(100vh - 400px) !important; /* Maintain height adjustment */
+    width: 100vw !important;
+    height: calc(100vh - 400px) !important; 
   }
 
   .previewImage{

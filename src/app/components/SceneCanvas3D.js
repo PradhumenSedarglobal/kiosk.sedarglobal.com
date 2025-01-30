@@ -116,7 +116,7 @@ var louvo_valance = false;
 var arm_type = true;
 var valance_hide = false;
 var isMoving;
-var isReset = false;
+
 var border_show = true;
 var bottom_border_show = false;
 var side_border_show = false;
@@ -130,6 +130,20 @@ const SceneCanvas3D = (props) => {
     <div>Loading ....</div>
   return false;
  }
+
+const gsReset = useSelector((state) => state.threed);
+var [isReset, setIsReset] = useState(false);
+
+console.log('isReset',isReset);
+
+useEffect(() => {
+  if (gsReset?.reset === true) {
+    setIsReset(true);
+  }
+}, [gsReset]);
+
+
+ 
 
  updateTextureImg(props?.material || {});
  addLights(props?.material?.light_info, props?.material?.SIO_LIGHT_INTENSITY)
