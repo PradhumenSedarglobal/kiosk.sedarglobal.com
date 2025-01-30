@@ -367,6 +367,7 @@ const Home = () => {
           <main>
       {/* Main Swiper -> pass thumbs swiper instance */}
       <Swiper
+        className="previewImage"
         modules={[Thumbs]}
         thumbs={{ swiper: thumbsSwiper }}
         spaceBetween={10}

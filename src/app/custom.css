@@ -48,12 +48,16 @@ body {
 
 @media (max-width: 480px) {
   .swiper-image {
-    height: calc(100vh - 240px); /* Consistent height for mobile */
+    height: calc(100vh - 400px); /* Consistent height for mobile */
   }
 
   #CanvasId3D canvas {
     width: 100vw !important; /* No need for calc(100vw - 0px) */
-    height: calc(100vh - 244px) !important; /* Maintain height adjustment */
+    height: calc(100vh - 400px) !important; /* Maintain height adjustment */
+  }
+
+  .previewImage{
+    height: calc(100vh - 390px);
   }
 }
 
