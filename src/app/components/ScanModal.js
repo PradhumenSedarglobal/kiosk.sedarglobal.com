@@ -1,36 +1,33 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { useRouter } from "next/router";
+
+// MUI Components
 import Modal from "@mui/joy/Modal";
 import ModalClose from "@mui/joy/ModalClose";
-import { QrReader } from "react-qr-reader";
 import { Grid, Sheet, Box } from "@mui/joy";
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 import Typography from "@mui/joy/Typography";
-import Image from "next/image";
 
-import { Helvetica_Neue_Bold } from "../../theme/typography";
-import { useRouter } from "next/router";
-import { useMediaQuery } from "@mui/material";
+// Scan QR Package
+import { QrReader } from "react-qr-reader";
+
+// Redux
 import { showScanner } from "../lib/redux/slices/scannerSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ScanModal() {
   const [scaner, setScaner] = useState(false);
   const [open, setOpen] = React.useState(true);
   const [data, setData] = useState(null);
   const router = useRouter();
-  const [showModal, setShowModal] = useState(false);
   const modalRef = useRef();
- 
-  
 
-  const handleClickOutside = (e) => {
-    if (e.target.classList.contains("backdrop")) {
-      // Close modal when clicking outside (on backdrop)
-      setShowModal(false);
-    }
-  };
+  // Redux
+  const fonts = useSelector((state) => state.font);
+  const dispatch = useDispatch();
 
   const handleManualClick = () => {
     setOpen(false);
@@ -40,6 +37,7 @@ export default function ScanModal() {
     setScaner(true);
   };
 
+
   useEffect(() => {
     if (data !== null) {
       router.push(data);
@@ -47,10 +45,8 @@ export default function ScanModal() {
   }, [data]);
 
 
-  const dispatch = useDispatch();
-
   return (
-    <div>
+    <>
       <Modal
         aria-labelledby="modal-title"
         aria-describedby="modal-desc"
@@ -65,12 +61,12 @@ export default function ScanModal() {
         <Sheet
           variant="outlined"
           sx={{
-            maxWidth: "90vw", // Responsive width
-            maxHeight: "90vh", // Responsive height
+            maxWidth: "90vw", 
+            maxHeight: "90vh", 
             borderRadius: "md",
             p: 3,
             boxShadow: "lg",
-            overflow: "auto", // Add scroll if content overflows
+            overflow: "auto", 
           }}
         >
           <ModalClose ref={modalRef} onClick={() => dispatch(showScanner(false))} variant="plain" sx={{ m: 1 }} />
@@ -78,7 +74,7 @@ export default function ScanModal() {
 
           <Grid
             container
-            spacing={2} // Add spacing between grid items
+            spacing={2}
             justifyContent={scaner ? "center" : "space-between"}
             alignItems="center"
             sx={{ pt: 4 }}
@@ -119,7 +115,7 @@ export default function ScanModal() {
                   />
                   <CardContent>
                     <Typography
-                      sx={{ fontFamily: Helvetica_Neue_Bold.style.fontFamily,fontSize:"smaller" }}
+                      sx={{ fontFamily: fonts.Helvetica_Neue_Bold.style.fontFamily,fontSize:"smaller" }}
                       level="title-md"
                       
                     >
@@ -152,7 +148,7 @@ export default function ScanModal() {
                   />
                   <CardContent>
                     <Typography
-                      sx={{ fontFamily: Helvetica_Neue_Bold.style.fontFamily,fontSize:"smaller" }}
+                      sx={{ fontFamily: fonts.Helvetica_Neue_Bold.style.fontFamily,fontSize:"smaller" }}
                       level="title-md"
                     >
                       Build your product
@@ -164,6 +160,6 @@ export default function ScanModal() {
           </Grid>
         </Sheet>
       </Modal>
-    </div>
+    </>
   );
 }
