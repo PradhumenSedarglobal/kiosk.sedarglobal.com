@@ -38,6 +38,9 @@ const Step4 = ({handleSubmit, formClose, setFormClose}) => {
   const stepCount =  useSelector((state) => state.step.value);
   console.log(stepCount, formClose, 'fdd')
 
+  const fonts = useSelector((state)=> state.font);
+
+
 
   return (
     <>
@@ -46,6 +49,7 @@ const Step4 = ({handleSubmit, formClose, setFormClose}) => {
 
       {stepCount == 5  && formClose && (
         <PopupModal 
+          fonts={fonts}
           handleSubmit={handleSubmit} 
           formClose={formClose} 
           setFormClose={setFormClose}

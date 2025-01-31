@@ -1,58 +1,29 @@
 import React, { useEffect, useRef, useState } from "react";
-import Grid from "@mui/material/Grid";
-import { DM_Serif_Text } from "next/font/google";
-
-import { Noto_Sans } from "next/font/google";
-
-import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Modal,
-  Select,
-  TextField,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
-
-import typography, {
-  Helvetica_Neue,
-  Helvetica_Neue_Regular,
-  Helvetica_Neue_Thin,
-  Helvetica_Neue_Light,
-  Helvetica_Neue_Medium,
-  Helvetica_Neue_Bold,
-  Helvetica_Neue_Light_Arabic,
-  Helvetica_Neue_Bold_Arabic,
-  Helvetica_Neue_Regular_Arabic,
-  Helvetica_Neue_Thin_Arabic,
-  Helvetica_Neue_Medium_Arabic,
-  Helvetica_Neue_Arabic,
-  porter_bold_3,
-} from "../../theme/typography";
-import MainHeading from "./MainHeading";
-import ImageCard from "./ImageCard";
-import PopupModal from "./PopupModal";
-
-import { ModalClose, ModalDialog } from "@mui/joy";
 import Image from "next/image";
 
+// Custom Components
+import MainHeading from "./MainHeading";
+import ImageCard from "./ImageCard";
+
+// MUI Components
+import {Box,Modal,Typography} from "@mui/material";
+import { ModalClose, ModalDialog } from "@mui/joy";
+import Grid from "@mui/material/Grid";
+
+// Redux
+import { useSelector } from "react-redux";
+import { useGetCategoriesQuery } from "../services/categoryApi";
 
 
-const dmserif = DM_Serif_Text({ weight: "400", subsets: ["latin"] });
-
-const notoSense = Noto_Sans({ weight: "400", subsets: ["latin"] });
-
-const Step1 = ({successValue,page,stepcount}) => {
+const Step1 = ({successValue,stepcount}) => {
   const [open,setOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
   const selectCategoryRef = useRef();
+
+  const fonts = useSelector((state)=> state.font);
+
+
+  const {data,error,isLoading} = useGetCategoriesQuery();
 
   const handleChange = (index) => {
     setSelectedCategory(index);
@@ -89,7 +60,7 @@ const Step1 = ({successValue,page,stepcount}) => {
           <ModalDialog onClick={()=>setOpen(false)}>
             <ModalClose />
             <Image height={200} width={260} src="/success.gif" alt="success" />
-            <Typography sx={{fontFamily:Helvetica_Neue_Thin.style.fontFamily,textAlign:"center"}}>Data Submited Successfully!!</Typography>
+            <Typography sx={{fontFamily:fonts.Helvetica_Neue_Thin.style.fontFamily,textAlign:"center"}}>Data Submited Successfully!!</Typography>
           </ModalDialog>
         </Modal>
       )}

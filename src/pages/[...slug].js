@@ -11,8 +11,6 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Fab from "@mui/material/Fab";
 import CloseIcon from "@mui/icons-material/Close";
 
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
 
 import Drawer from "@mui/material/Drawer";
 import { styled, useTheme } from "@mui/material/styles";

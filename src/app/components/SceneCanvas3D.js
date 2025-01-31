@@ -134,7 +134,6 @@ const SceneCanvas3D = (props) => {
 const gsReset = useSelector((state) => state.threed);
 var [isReset, setIsReset] = useState(false);
 
-console.log('isReset',isReset);
 
 useEffect(() => {
   if (gsReset?.reset === true) {
@@ -147,7 +146,7 @@ useEffect(() => {
 
  updateTextureImg(props?.material || {});
  addLights(props?.material?.light_info, props?.material?.SIO_LIGHT_INTENSITY)
- console.log(props, 'props'); 
+ 
 
  
 
@@ -1976,7 +1975,7 @@ const addToCartFunScene = (state, dispatch, cart_status = "INCOMPLETE") => {
     (stepsArray?.MEASUREMENT || stepsArray?.ROLL_CALCULATION)
   ) {
 
-    console.log(stepsArray, post_data, 'addToCartFunScene');
+   
     axiosInstance.post(path_url, post_data)
       .then((response) => {
         let res_data = response.data;

@@ -6,21 +6,8 @@ import ModalClose from "@mui/joy/ModalClose";
 import { MuiTelInput } from "mui-tel-input";
 import { useForm } from "react-hook-form"
 
-import typography, {
-  Helvetica_Neue,
-  Helvetica_Neue_Regular,
-  Helvetica_Neue_Thin,
-  Helvetica_Neue_Light,
-  Helvetica_Neue_Medium,
-  Helvetica_Neue_Bold,
-  Helvetica_Neue_Light_Arabic,
-  Helvetica_Neue_Bold_Arabic,
-  Helvetica_Neue_Regular_Arabic,
-  Helvetica_Neue_Thin_Arabic,
-  Helvetica_Neue_Medium_Arabic,
-  Helvetica_Neue_Arabic,
-  porter_bold_3,
-} from "../../theme/typography";
+
+
 import { Alert, Snackbar } from "@mui/material";
 import Input from "@mui/joy/Input";
 import Button from "@mui/joy/Button";
@@ -28,7 +15,7 @@ import { Grid, Sheet, styled } from "@mui/joy";
 import { MarginRounded } from "@mui/icons-material";
 import Step4 from "./Step4";
 import Home from "@/pages";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { manualStep } from "../lib/redux/slices/stepSlice";
 
 
@@ -45,19 +32,7 @@ const style = {
   pl: 10,
 };
 
-const StyledTelInput = styled(MuiTelInput)({
-  "& .MuiOutlinedInput-root": {
-    pl: 10,
-    // border: 'none',
-    display: "flex",
-    justifyContent: "flex-end",
-    fontFamily: Helvetica_Neue_Regular.style.fontFamily,
-  },
-  "& .MuiFormControl-root .MuiInputBase-root .MuiInputAdornment-root .MuiInputBase-input": {
-    width: {md: 275, sm:'100%', xs:'100%'}
-    // border: 'none',
-  },
-});
+
 
 
 
@@ -67,6 +42,9 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose }) {
   //const [open, setOpen] = useState(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const fonts = useSelector((state)=> state.font);
+ 
 
   const {register,handleSubmit:handleSubmit2,watch,formState:{errors}, clearErrors} = useForm();
 
@@ -86,6 +64,20 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose }) {
   };
 
   const dispatch = useDispatch();
+
+  const StyledTelInput = styled(MuiTelInput)({
+    "& .MuiOutlinedInput-root": {
+      pl: 10,
+      // border: 'none',
+      display: "flex",
+      justifyContent: "flex-end",
+      fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily,
+    },
+    "& .MuiFormControl-root .MuiInputBase-root .MuiInputAdornment-root .MuiInputBase-input": {
+      width: {md: 275, sm:'100%', xs:'100%'}
+      // border: 'none',
+    },
+  });
 
 
   return (
@@ -124,7 +116,7 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose }) {
           <Grid sx={{ mt: 5 }}  gap={2} container justifyContent="space-between">
             <Grid item>
               <Typography
-                sx={{ fontFamily: Helvetica_Neue_Medium.style.fontFamily }}
+                sx={{ fontFamily: fonts.Helvetica_Neue_Medium.style.fontFamily }}
                 id="modal-modal-title"
                 variant="p"
                 component="p"
@@ -137,18 +129,18 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose }) {
                 {...register("customer_name",{required:true})}
                 variant="outlined"
                 sx={{
-                  fontFamily: Helvetica_Neue_Light.style.fontFamily,
+                  fontFamily: fonts.Helvetica_Neue_Light.style.fontFamily,
                 }}
                 placeholder="Enter Name"
               />
-              {errors.customer_name && <span className="error" style={{fontFamily:Helvetica_Neue.style.fontFamily}}>Customer name is required</span>}
+              {errors.customer_name && <span className="error" style={{fontFamily:fonts.Helvetica_Neue.style.fontFamily}}>Customer name is required</span>}
             </Grid>
           </Grid>
 
           <Grid sx={{ mt: 2 }} gap={2} container justifyContent="space-between">
             <Grid item>
               <Typography
-                sx={{ fontFamily: Helvetica_Neue_Medium.style.fontFamily }}
+                sx={{ fontFamily: fonts.Helvetica_Neue_Medium.style.fontFamily }}
                 id="modal-modal-title"
                 variant="p"
                 component="p"
@@ -164,14 +156,14 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose }) {
                 sx={{width:"100%"}}
                 onChange={handleChange}
               />
-              {errors.mobile_no && <span className="error" style={{fontFamily:Helvetica_Neue.style.fontFamily}}>Mobile No is required</span>}
+              {errors.mobile_no && <span className="error" style={{fontFamily:fonts.Helvetica_Neue.style.fontFamily}}>Mobile No is required</span>}
             </Grid>
           </Grid>
 
           <Grid sx={{ mt: 2 }} gap={2} container justifyContent="space-between">
             <Grid item>
               <Typography
-                sx={{ fontFamily: Helvetica_Neue_Medium.style.fontFamily }}
+                sx={{ fontFamily: fonts.Helvetica_Neue_Medium.style.fontFamily }}
                 id="modal-modal-title"
                 variant="p"
                 component="p"
@@ -184,19 +176,19 @@ export default function PopupModal({ handleSubmit, formClose, setFormClose }) {
                 {...register("salesmen_id",{required:true})}
                 variant="outlined"
                 sx={{
-                  fontFamily: Helvetica_Neue_Light.style.fontFamily,
+                  fontFamily: fonts.Helvetica_Neue_Light.style.fontFamily,
                 }}
                 placeholder="Enter consultant Id"
                
               />
-              {errors.salesmen_id && <span className="error" style={{fontFamily:Helvetica_Neue.style.fontFamily}}>Consultant Id is required</span>}
+              {errors.salesmen_id && <span className="error" style={{fontFamily:fonts.Helvetica_Neue.style.fontFamily}}>Consultant Id is required</span>}
             </Grid>
           </Grid>
 
           <Grid
             sx={{
               mt:5,
-              fontFamily: Helvetica_Neue_Regular.style.fontFamily,
+              fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily,
               display: "flex",
               justifyContent: "flex-end",
             }}

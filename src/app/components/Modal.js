@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Grid from "@mui/material/Grid";
-import { DM_Serif_Text } from "next/font/google";
 
-import { Noto_Sans } from "next/font/google";
 
 import {
   Box,
@@ -19,32 +17,17 @@ import {
   useMediaQuery,
 } from "@mui/material";
 
-import typography, {
-  Helvetica_Neue,
-  Helvetica_Neue_Regular,
-  Helvetica_Neue_Thin,
-  Helvetica_Neue_Light,
-  Helvetica_Neue_Medium,
-  Helvetica_Neue_Bold,
-  Helvetica_Neue_Light_Arabic,
-  Helvetica_Neue_Bold_Arabic,
-  Helvetica_Neue_Regular_Arabic,
-  Helvetica_Neue_Thin_Arabic,
-  Helvetica_Neue_Medium_Arabic,
-  Helvetica_Neue_Arabic,
-  porter_bold_3,
-} from "../../theme/typography";
 import MainHeading from "./MainHeading";
 import ImageCard from "./ImageCard";
 
-const dmserif = DM_Serif_Text({ weight: "400", subsets: ["latin"] });
 
-const notoSense = Noto_Sans({ weight: "400", subsets: ["latin"] });
+
 
 const Modal = () => {
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(null);
   const selectCategoryRef = useRef();
+
 
   const handleChange = (index) => {
     setSelectedCategory(index);

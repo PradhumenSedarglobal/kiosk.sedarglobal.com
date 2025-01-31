@@ -1,96 +1,45 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Grid from "@mui/material/Grid";
 
+// Icons
+import IconButton from "@mui/material/IconButton";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import HomeIcon from "@mui/icons-material/Home";
+import CloseIcon from "@mui/icons-material/Close";
+import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
 import ArrowCircleRightIcon from "@mui/icons-material/ArrowCircleRight";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
-import { DM_Serif_Text } from "next/font/google";
-import { Noto_Sans } from "next/font/google";
-import Slider from "@mui/material/Slider";
 import MenuIcon from "@mui/icons-material/Menu";
-import Fab from "@mui/material/Fab";
-import CloseIcon from "@mui/icons-material/Close";
-import SettingsBackupRestoreIcon from '@mui/icons-material/SettingsBackupRestore';
 
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-import { Carousel } from "react-responsive-carousel";
 
-import Drawer from "@mui/material/Drawer";
-import { styled, useTheme } from "@mui/material/styles";
-import CssBaseline from "@mui/material/CssBaseline";
-import MuiAppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
-import HomeIcon from "@mui/icons-material/Home";
-
-import { NextResponse } from "next/server";
-import { useDispatch, useSelector } from "react-redux";
-import ProductThumbSwiper from "@/modules/productThumbSwiper";
-
-// Import Swiper React components
+// Swiper slider
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Thumbs } from "swiper/modules";
-
-// Import Swiper styles
 import "swiper/css";
 
-import {
-  Box,
-  Button,
-  Card,
-  CardActions,
-  CardContent,
-  TextField,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
-import { Inter } from "next/font/google";
-import Step1 from "@/app/components/Step1";
-import Step2 from "@/app/components/Step2";
-import Step3 from "@/app/components/Step3";
-import Step4 from "@/app/components/Step4";
-import Modal from "@/app/components/Modal";
-import Step6 from "@/app/components/Step6";
-
-import typography, {
-  Helvetica_Neue,
-  Helvetica_Neue_Regular,
-  Helvetica_Neue_Thin,
-  Helvetica_Neue_Light,
-  Helvetica_Neue_Medium,
-  Helvetica_Neue_Bold,
-  Helvetica_Neue_Light_Arabic,
-  Helvetica_Neue_Bold_Arabic,
-  Helvetica_Neue_Regular_Arabic,
-  Helvetica_Neue_Thin_Arabic,
-  Helvetica_Neue_Medium_Arabic,
-  Helvetica_Neue_Arabic,
-  porter_bold_3,
-} from "../theme/typography";
-
-import PopupModal from "@/app/components/PopupModal";
-import ScanModal from "@/app/components/ScanModal";
+// Material ui 
+import Grid from "@mui/material/Grid";
+import { styled, useTheme } from "@mui/material/styles";
+import {Box,Button,Typography,useMediaQuery} from "@mui/material";
 import { ModalClose, ModalDialog, Sheet } from "@mui/joy";
-import { Router } from "next/router";
-import ThreeDImageViewer from "@/app/components/ThreeDImageViewer";
-import {
-  decrementStep,
-  incrementStep,
-  manualStep,
-} from "@/app/lib/redux/slices/stepSlice";
-import { showScanner } from "@/app/lib/redux/slices/scannerSlice";
+import Divider from "@mui/material/Divider";
+import List from "@mui/material/List";
+import Drawer from "@mui/material/Drawer";
+import MuiAppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Fab from "@mui/material/Fab";
+
+// Custom components
+import { Step1, Step2, Step3, Step4, Step6, Modal } from "@/app/components/";
 import SceneCanvas3D from "@/app/components/SceneCanvas3D";
+import ScanModal from "@/app/components/ScanModal";
+
+
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import {decrementStep,incrementStep,manualStep} from "@/app/lib/redux/slices/stepSlice";
+import { showScanner } from "@/app/lib/redux/slices/scannerSlice";
 import { reset } from "@/app/lib/redux/slices/threedSlice";
 
 const drawerWidth = 400;
@@ -142,10 +91,10 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const Home = () => {
+  const theme = useTheme();
   const [success2, setSuccess2] = useState(false);
   const [scanModal, setScanModal] = useState(false);
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const [lastPage, setLastPage] = useState();
   const [formClose, setFormClose] = useState(false);
   const [data, setData] = useState({});
@@ -155,11 +104,14 @@ const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [allowNextSlide, setAllowNextSlide] = useState(false);
 
-  const stepCount = useSelector((state) => state.step.value);
-  const scanner = useSelector((state) => state.scanner.value);
-  const dispatch = useDispatch();
+  // Redux Part Start
+   const stepCount = useSelector((state) => state.step.value);
+   const scanner = useSelector((state) => state.scanner.value);
+   const fonts = useSelector((state)=> state.font);
+ 
+   const dispatch = useDispatch();
+  // Redux Part End
 
-  const isSmallScreen = useMediaQuery("(man-width: 376px)");
 
   const fetchData = async () => {
     await fetch(
@@ -167,7 +119,6 @@ const Home = () => {
     )
       .then((res) => res.json())
       .then((res) => {
-        console.log(res, "res");
         setData(res.result[0]);
         setMaterialData(
           res.result?.[1]?.[2]?.["CHILD_STEP"]?.[1]?.["SUB_CHILD"]?.[0]
@@ -182,19 +133,17 @@ const Home = () => {
       fetchData();
     }
   }, [stepTF]);
-  console.log("scanner", scanner);
+ 
 
   const handleChange = (index) => {
     setSelectedCategory(index);
   };
 
   const handleHome = () => {
-    console.log("ddd");
     dispatch(showScanner(true));
   };
 
   useEffect(() => {
-    console.log("modal open");
   }, [scanModal]);
 
   useEffect(() => {
@@ -202,7 +151,6 @@ const Home = () => {
   }, []);
 
   const nextStep = () => {
-    console.log(stepCount, "dddd");
 
     if (stepCount < 5) {
       dispatch(incrementStep(stepCount));
@@ -219,7 +167,7 @@ const Home = () => {
   };
 
   const handleSubmit = (submited) => {
-    console.log(submited, "value");
+
     if (submited == "close") {
       dispatch(manualStep(5));
       return false;
@@ -277,7 +225,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    console.log("Updated scanner state:", scanner);
+    
   }, [scanner]);
 
   const imageUrls = [
@@ -342,7 +290,7 @@ const Home = () => {
               sx={{
                 backgroundColor: "#ef9c00",
                 color: "#f5ece0",
-                fontFamily: Helvetica_Neue_Regular.style.fontFamily,
+                fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily,
                 fontWeight: "700",
                 padding: "8px 16px",
                 position: "absolute",
@@ -365,7 +313,7 @@ const Home = () => {
                  sx={{
                    backgroundColor: "#ef9c00",
                    color: "#f5ece0",
-                   fontFamily: Helvetica_Neue_Regular.style.fontFamily,
+                   fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily,
                    fontWeight: "700",
                    padding: "8px 16px",
                    position: "absolute",
@@ -518,7 +466,7 @@ const Home = () => {
                       <Typography
                         sx={{
                           color: "rgb(239, 156, 0)",
-                          fontFamily: Helvetica_Neue_Bold.style.fontFamily,
+                          fontFamily: fonts.Helvetica_Neue_Bold.style.fontFamily,
                           fontWeight: "600",
                         }}
                         variant="h6"
@@ -554,7 +502,7 @@ const Home = () => {
                       <Grid sx={{ paddingLeft: "20px" }} item xs={8} sm={9} md={9}>
                         <Typography
                           sx={{
-                            fontFamily: Helvetica_Neue_Medium.style.fontFamily,
+                            fontFamily: fonts.Helvetica_Neue_Medium.style.fontFamily,
                             fontWeight: "500",
                             letterSpacing: "0.00938em",
                             whiteSpace: "nowrap",
@@ -571,7 +519,7 @@ const Home = () => {
                           noWrap
                           sx={{
                             wordBreak: "break-all",
-                            fontFamily: Helvetica_Neue_Medium.style.fontFamily,
+                            fontFamily: fonts.Helvetica_Neue_Medium.style.fontFamily,
                             fontWeight: "700",
                             fontSize: "1rem", // Medium size
                             letterSpacing: "0.00938em",
@@ -587,7 +535,7 @@ const Home = () => {
                         <Box sx={{ display: "flex", marginTop: "8px" }}>
                           <Typography
                             sx={{
-                              fontFamily: Helvetica_Neue_Medium.style.fontFamily,
+                              fontFamily: fonts.Helvetica_Neue_Medium.style.fontFamily,
                               fontWeight: "500",
                             }}
                             variant="body2"
@@ -597,7 +545,7 @@ const Home = () => {
                           </Typography>
                           <Typography
                             sx={{
-                              fontFamily: Helvetica_Neue_Thin.style.fontFamily,
+                              fontFamily: fonts.Helvetica_Neue_Thin.style.fontFamily,
                               fontWeight: "700",
                               marginLeft: "5px",
                             }}
@@ -610,7 +558,7 @@ const Home = () => {
                         <Box sx={{ display: "flex", marginTop: "8px" }}>
                           <Typography
                             sx={{
-                              fontFamily: Helvetica_Neue_Medium.style.fontFamily,
+                              fontFamily: fonts.Helvetica_Neue_Medium.style.fontFamily,
                               fontWeight: "500",
                               letterSpacing: "0.00938em",
                             }}
@@ -621,7 +569,7 @@ const Home = () => {
                           </Typography>
                           <Typography
                             sx={{
-                              fontFamily: Helvetica_Neue_Thin.style.fontFamily,
+                              fontFamily: fonts.Helvetica_Neue_Thin.style.fontFamily,
                               fontWeight: "700",
                               letterSpacing: "0.00938em",
                               marginLeft: "5px",
@@ -651,7 +599,7 @@ const Home = () => {
                       <Grid sx={{ paddingLeft: "20px" }} item xs={8} sm={9} md={9}>
                         <Typography
                           sx={{
-                            fontFamily: Helvetica_Neue_Medium.style.fontFamily,
+                            fontFamily: fonts.Helvetica_Neue_Medium.style.fontFamily,
                             fontWeight: "500",
                             letterSpacing: "0.00938em",
                             whiteSpace: "nowrap",
@@ -666,7 +614,7 @@ const Home = () => {
                         </Typography>
                         <Typography
                           sx={{
-                            fontFamily: Helvetica_Neue_Medium.style.fontFamily,
+                            fontFamily: fonts.Helvetica_Neue_Medium.style.fontFamily,
                             fontWeight: "700",
                             fontSize: "1rem", // Medium size
                             letterSpacing: "0.00938em",
@@ -682,7 +630,7 @@ const Home = () => {
                         <Box sx={{ display: "flex", marginTop: "8px" }}>
                           <Typography
                             sx={{
-                              fontFamily: Helvetica_Neue_Medium.style.fontFamily,
+                              fontFamily: fonts.Helvetica_Neue_Medium.style.fontFamily,
                               fontWeight: "500",
                             }}
                             variant="body2"
@@ -692,7 +640,7 @@ const Home = () => {
                           </Typography>
                           <Typography
                             sx={{
-                              fontFamily: Helvetica_Neue_Thin.style.fontFamily,
+                              fontFamily: fonts.Helvetica_Neue_Thin.style.fontFamily,
                               fontWeight: "700",
                               marginLeft: "5px",
                             }}
@@ -705,7 +653,7 @@ const Home = () => {
                         <Box sx={{ display: "flex", marginTop: "8px" }}>
                           <Typography
                             sx={{
-                              fontFamily: Helvetica_Neue_Medium.style.fontFamily,
+                              fontFamily: fonts.Helvetica_Neue_Medium.style.fontFamily,
                               fontWeight: "500",
                               letterSpacing: "0.00938em",
                             }}
@@ -716,7 +664,7 @@ const Home = () => {
                           </Typography>
                           <Typography
                             sx={{
-                              fontFamily: Helvetica_Neue_Thin.style.fontFamily,
+                              fontFamily: fonts.Helvetica_Neue_Thin.style.fontFamily,
                               fontWeight: "700",
                               letterSpacing: "0.00938em",
                               marginLeft: "5px",
@@ -752,15 +700,15 @@ const Home = () => {
                       sm: "fixed",
                     },
                     overflow: "hidden",
-                    bottom: { xs: 0, md: 0, sm: 0 }, // Stick to the bottom on small screens
-                    left: 0, // Ensure it stays on the left side
-                    zIndex: 1000, // Bring it on top of other elements
-                    boxShadow: "0 -3px 11px -3px rgba(0, 0, 0, 0.1)", // Optional: Adds shadow for better visual separation
+                    bottom: { xs: 0, md: 0, sm: 0 }, 
+                    left: 0, 
+                    zIndex: 1000, 
+                    boxShadow: "0 -3px 11px -3px rgba(0, 0, 0, 0.1)", 
                   }}
                 >
                   <Grid
                     container
-                    spacing={2} // Adds space between child Grid items
+                    spacing={2} 
                     justifyContent="space-between"
                     alignItems="center"
                     sx={{
@@ -775,7 +723,7 @@ const Home = () => {
                         <>
                           <Typography
                             sx={{
-                              fontFamily: Helvetica_Neue_Regular.style.fontFamily,
+                              fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily,
                               color: "#010101",
                               paddingTop: "25px",
                               textAlign: "start",
@@ -790,7 +738,7 @@ const Home = () => {
                           </Typography>
                           <Typography
                             sx={{
-                              fontFamily: Helvetica_Neue_Bold.style.fontFamily,
+                              fontFamily: fonts.Helvetica_Neue_Bold.style.fontFamily,
                               color: "#010101",
                               textAlign: "start",
                               fontSize: "medium",
@@ -809,7 +757,7 @@ const Home = () => {
                     <Grid item xs={5} pt={"0 !important"}>
                       <Typography
                         sx={{
-                          fontFamily: Helvetica_Neue_Bold.style.fontFamily,
+                          fontFamily: fonts.Helvetica_Neue_Bold.style.fontFamily,
                           color: "#010101",
                           paddingTop: "25px",
                           textAlign: "end",
@@ -850,7 +798,7 @@ const Home = () => {
                             display: "flex",
                             backgroundColor: "#ef9c00",
                             color: "#f5ece0",
-                            fontFamily: Helvetica_Neue_Regular.style.fontFamily,
+                            fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily,
                             justifyContent: "flex-start",
                             alignItems: "start",
                           }}
@@ -869,7 +817,7 @@ const Home = () => {
                             display: "flex",
                             backgroundColor: "#ef9c00",
                             color: "#f5ece0",
-                            fontFamily: Helvetica_Neue_Regular.style.fontFamily,
+                            fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily,
                             justifyContent: "flex-start",
                             alignItems: "start",
                           }}
@@ -897,7 +845,7 @@ const Home = () => {
                             display: "flex",
                             backgroundColor: "#ef9c00",
                             color: "#f5ece0",
-                            fontFamily: Helvetica_Neue_Regular.style.fontFamily,
+                            fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily,
                             fontWeight: "700",
                             justifyContent: "flex-end",
                             alignItems: "end",
@@ -917,7 +865,7 @@ const Home = () => {
                             display: "flex",
                             backgroundColor: "#ef9c00",
                             color: "#f5ece0",
-                            fontFamily: Helvetica_Neue_Regular.style.fontFamily,
+                            fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily,
                             fontWeight: "700",
                             justifyContent: "flex-end",
                             alignItems: "end",
