@@ -1,63 +1,30 @@
-
-
-import {
-  Box,
-  TextField,
-  Typography,
-  Select,
-  MenuItem,
-  InputLabel,
-  FormControl,
-  FormControlLabel,
-  RadioGroup,
-  Radio,
-} from "@mui/material";
-
-import typography, {
-  Helvetica_Neue,
-  Helvetica_Neue_Regular,
-  Helvetica_Neue_Thin,
-  Helvetica_Neue_Light,
-  Helvetica_Neue_Medium,
-  Helvetica_Neue_Bold,
-  Helvetica_Neue_Light_Arabic,
-  Helvetica_Neue_Bold_Arabic,
-  Helvetica_Neue_Regular_Arabic,
-  Helvetica_Neue_Thin_Arabic,
-  Helvetica_Neue_Medium_Arabic,
-  Helvetica_Neue_Arabic,
-} from "../../theme/typography";
-
+// MUI Components
+import { Box, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid2";
+
+// Custom Components
 import MainHeading from "./MainHeading";
 import PopupModal from "./PopupModal";
+
+// Redux
 import { useSelector } from "react-redux";
 
-
-const Step4 = ({handleSubmit, formClose, setFormClose}) => {
-  const stepCount =  useSelector((state) => state.step.value);
-  console.log(stepCount, formClose, 'fdd')
-
-  const fonts = useSelector((state)=> state.font);
-
-
+const Step4 = ({ handleSubmit, formClose, setFormClose }) => {
+  // Redux
+  const stepCount = useSelector((state) => state.step.value);
+  const fonts = useSelector((state) => state.font);
 
   return (
     <>
+      {/* Popup modal Form Submition */}
 
-      {/* Popup modal  */}
-
-      {stepCount == 5  && formClose && (
-        <PopupModal 
-          fonts={fonts}
-          handleSubmit={handleSubmit} 
-          formClose={formClose} 
+      {stepCount == 5 && formClose && (
+        <PopupModal
+          handleSubmit={handleSubmit}
+          formClose={formClose}
           setFormClose={setFormClose}
-        
-          />
+        />
       )}
-
-      {/* Middle Content */}
 
       <Box
         sx={{
@@ -76,15 +43,27 @@ const Step4 = ({handleSubmit, formClose, setFormClose}) => {
           <Grid
             sx={{
               overflow: "auto",
-              alignItems: {xs:"center",sm:"center",md:"start",lg:"start",xl:"start"},
-              justifyContent: {xs:"center",sm:"center",md:"start",lg:"start",xl:"start"},
+              alignItems: {
+                xs: "center",
+                sm: "center",
+                md: "start",
+                lg: "start",
+                xl: "start",
+              },
+              justifyContent: {
+                xs: "center",
+                sm: "center",
+                md: "start",
+                lg: "start",
+                xl: "start",
+              },
               px: 2,
-              pb: {sm:20,xs:20,md:5,lg:5}
+              pb: { sm: 20, xs: 20, md: 5, lg: 5 },
             }}
           >
             <Typography
               sx={{
-                fontFamily: Helvetica_Neue_Bold.style.fontFamily,
+                fontFamily: fonts.Helvetica_Neue_Bold.style.fontFamily,
                 marginTop: "20px",
               }}
               gutterBottom
@@ -97,7 +76,7 @@ const Step4 = ({handleSubmit, formClose, setFormClose}) => {
             <Grid
               container
               justifyContent="space-between"
-              sx={{ fontFamily: Helvetica_Neue_Regular.style.fontFamily }}
+              sx={{ fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily }}
             >
               <Grid item sx={{ mt: 2, fontSize: "small", fontWeight: "700" }}>
                 <Grid xs={6}>Color</Grid>
@@ -108,8 +87,10 @@ const Step4 = ({handleSubmit, formClose, setFormClose}) => {
               </Grid>
             </Grid>
 
-            <Grid container justifyContent="space-between"
-            sx={{ fontFamily: Helvetica_Neue_Regular.style.fontFamily }}
+            <Grid
+              container
+              justifyContent="space-between"
+              sx={{ fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily }}
             >
               <Grid item sx={{ mt: 2, fontSize: "small", fontWeight: "700" }}>
                 <Grid xs={6}>Measurement</Grid>
@@ -119,8 +100,10 @@ const Step4 = ({handleSubmit, formClose, setFormClose}) => {
               </Grid>
             </Grid>
 
-            <Grid container justifyContent="space-between"
-            sx={{ fontFamily: Helvetica_Neue_Regular.style.fontFamily }}
+            <Grid
+              container
+              justifyContent="space-between"
+              sx={{ fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily }}
             >
               <Grid item sx={{ mt: 2, fontSize: "small", fontWeight: "700" }}>
                 <Grid xs={6}>Gathering</Grid>
@@ -130,8 +113,10 @@ const Step4 = ({handleSubmit, formClose, setFormClose}) => {
               </Grid>
             </Grid>
 
-            <Grid container justifyContent="space-between"
-            sx={{ fontFamily: Helvetica_Neue_Regular.style.fontFamily }}
+            <Grid
+              container
+              justifyContent="space-between"
+              sx={{ fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily }}
             >
               <Grid item sx={{ mt: 2, fontSize: "small", fontWeight: "700" }}>
                 <Grid xs={6}>No of Pieces</Grid>
@@ -141,8 +126,10 @@ const Step4 = ({handleSubmit, formClose, setFormClose}) => {
               </Grid>
             </Grid>
 
-            <Grid container justifyContent="space-between"
-            sx={{ fontFamily: Helvetica_Neue_Regular.style.fontFamily }}
+            <Grid
+              container
+              justifyContent="space-between"
+              sx={{ fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily }}
             >
               <Grid item sx={{ mt: 2, fontSize: "small", fontWeight: "700" }}>
                 <Grid xs={6}>Fabric Qty</Grid>
@@ -152,8 +139,10 @@ const Step4 = ({handleSubmit, formClose, setFormClose}) => {
               </Grid>
             </Grid>
 
-            <Grid container justifyContent="space-between"
-            sx={{ fontFamily: Helvetica_Neue_Regular.style.fontFamily }}
+            <Grid
+              container
+              justifyContent="space-between"
+              sx={{ fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily }}
             >
               <Grid item sx={{ mt: 2, fontSize: "small", fontWeight: "700" }}>
                 <Grid xs={6}>Lining Option</Grid>
@@ -163,8 +152,10 @@ const Step4 = ({handleSubmit, formClose, setFormClose}) => {
               </Grid>
             </Grid>
 
-            <Grid container justifyContent="space-between"
-            sx={{ fontFamily: Helvetica_Neue_Regular.style.fontFamily }}
+            <Grid
+              container
+              justifyContent="space-between"
+              sx={{ fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily }}
             >
               <Grid item sx={{ mt: 2, fontSize: "small", fontWeight: "700" }}>
                 <Grid xs={6}>Track Option</Grid>
@@ -173,7 +164,6 @@ const Step4 = ({handleSubmit, formClose, setFormClose}) => {
                 <Grid xs={6}>No Track(Fabric Only)</Grid>
               </Grid>
             </Grid>
-
           </Grid>
         </Box>
       </Box>
