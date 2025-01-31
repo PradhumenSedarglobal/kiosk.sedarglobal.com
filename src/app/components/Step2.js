@@ -1,46 +1,34 @@
-import React, { useEffect, useRef, useState } from "react";
-import Grid from "@mui/material/Grid";
-import Input from '@mui/joy/Input';
+import React, {useState } from "react";
 
+// MUI Components
+import Grid from "@mui/material/Grid";
+import Input from "@mui/joy/Input";
 import {
   Box,
-  TextField,
   Typography,
   Select,
   MenuItem,
   InputLabel,
   FormControl,
-  FormControlLabel,
-  RadioGroup,
-  Radio,
 } from "@mui/material";
 
-import typography, {
-  Helvetica_Neue,
-  Helvetica_Neue_Regular,
-  Helvetica_Neue_Thin,
-  Helvetica_Neue_Light,
-  Helvetica_Neue_Medium,
-  Helvetica_Neue_Bold,
-  Helvetica_Neue_Light_Arabic,
-  Helvetica_Neue_Bold_Arabic,
-  Helvetica_Neue_Regular_Arabic,
-  Helvetica_Neue_Thin_Arabic,
-  Helvetica_Neue_Medium_Arabic,
-  Helvetica_Neue_Arabic,
-} from "../../theme/typography";
+// Custom Components
 import MainHeading from "./MainHeading";
+
+// Redux
+import { useSelector } from "react-redux";
 
 const Step2 = () => {
   const [selectedOption, setSelectedOption] = useState(1);
+
+  // Redux
+  const fonts = useSelector((state) => state.font);
 
   const handleChangeSelect = (event) => {
     setSelectedOption(event.target.value);
   };
   return (
     <>
-      {/* Middle Content */}
-
       <Box
         sx={{
           userSelect: "none",
@@ -57,10 +45,22 @@ const Step2 = () => {
         >
           <Grid
             sx={{
-              alignItems: {xs:"center",sm:"center",md:"start",lg:"start",xl:"start"},
-              justifyContent: {xs:"center",sm:"center",md:"start",lg:"start",xl:"start"},
+              alignItems: {
+                xs: "center",
+                sm: "center",
+                md: "start",
+                lg: "start",
+                xl: "start",
+              },
+              justifyContent: {
+                xs: "center",
+                sm: "center",
+                md: "start",
+                lg: "start",
+                xl: "start",
+              },
               px: 2,
-              pb: {sm:20,xs:20,md:5,lg:5},
+              pb: { sm: 20, xs: 20, md: 5, lg: 5 },
             }}
           >
             <Typography
@@ -68,7 +68,7 @@ const Step2 = () => {
               gutterBottom
               sx={{
                 display: "block",
-                fontFamily: Helvetica_Neue_Bold.style.fontFamily,
+                fontFamily: fonts.Helvetica_Neue_Bold.style.fontFamily,
                 marginBottom: "20px",
               }}
             >
@@ -79,24 +79,40 @@ const Step2 = () => {
               <InputLabel
                 sx={{
                   marginBottom: "10px",
-                  fontFamily: Helvetica_Neue_Bold.style.fontFamily,
+                  fontFamily: fonts.Helvetica_Neue_Bold.style.fontFamily,
                 }}
               >
                 Product Width (Min 100 cm - Max 500 cm)
               </InputLabel>
-              <Input  size="lg" variant="outlined" sx={{backgroundColor:"#fff",fontFamily: Helvetica_Neue_Regular.style.fontFamily}} value="100" />
+              <Input
+                size="lg"
+                variant="outlined"
+                sx={{
+                  backgroundColor: "#fff",
+                  fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily,
+                }}
+                value="100"
+              />
             </Box>
             <Box>
               <InputLabel
                 sx={{
                   marginTop: "20px",
                   marginBottom: "10px",
-                  fontFamily: Helvetica_Neue_Bold.style.fontFamily,
+                  fontFamily: fonts.Helvetica_Neue_Bold.style.fontFamily,
                 }}
               >
                 Product Height (Min 200 cm - Max 375 cm)
               </InputLabel>
-              <Input size="lg" variant="outlined" sx={{backgroundColor:"#fff",fontFamily: Helvetica_Neue_Regular.style.fontFamily}}  value="200"/>
+              <Input
+                size="lg"
+                variant="outlined"
+                sx={{
+                  backgroundColor: "#fff",
+                  fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily,
+                }}
+                value="200"
+              />
             </Box>
             <Box>
               <Typography
@@ -104,7 +120,7 @@ const Step2 = () => {
                 gutterBottom
                 sx={{
                   display: "block",
-                  fontFamily: Helvetica_Neue_Bold.style.fontFamily,
+                  fontFamily: fonts.Helvetica_Neue_Bold.style.fontFamily,
                   marginTop: "20px",
                 }}
               >
@@ -121,7 +137,7 @@ const Step2 = () => {
                   onChange={handleChangeSelect}
                   size="small"
                   sx={{
-                    fontFamily: Helvetica_Neue_Regular.style.fontFamily,
+                    fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily,
                     padding: "6px 10px",
                   }}
                 >
