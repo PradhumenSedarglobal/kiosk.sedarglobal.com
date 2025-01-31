@@ -64,6 +64,7 @@ const Step4 = ({handleSubmit, formClose, setFormClose}) => {
         <MainHeading sx={{ mb: 2 }} title="Summery" />
 
         <Box
+          className="bigipads"
           sx={{
             height: { lg: "calc(100vh - 240px)", overflow: "auto" },
           }}

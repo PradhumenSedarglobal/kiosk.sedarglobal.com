@@ -361,6 +361,7 @@ const Home = () => {
              {show3d && (
                  <Fab
                  onClick={()=>{handleResetThreed()}}
+                 className="resetbutton"
                  sx={{
                    backgroundColor: "#ef9c00",
                    color: "#f5ece0",

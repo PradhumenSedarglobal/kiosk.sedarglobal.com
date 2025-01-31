@@ -66,6 +66,7 @@ const Step6 = () => {
         <MainHeading sx={{ mb: 2 }} title="Control Option" />
 
         <Box
+          className="bigipads"
           sx={{
             height: { lg: "calc(100vh - 240px)", overflow: "auto" },
           }}

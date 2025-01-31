@@ -46,7 +46,7 @@ body {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .swiper-image {
     height: calc(100vh - 400px); 
   }
@@ -60,6 +60,31 @@ body {
     height: calc(100vh - 390px);
   }
 }
+
+@media (max-width: 1024px) and (min-width: 768px) {
+  .swiper-image {
+    height: calc(100vh - 400px);
+  }
+
+  #CanvasId3D canvas {
+    width: 100vw !important;
+    height: calc(100vh - 400px) !important;
+  }
+
+  .previewImage {
+    height: calc(100vh - 390px);
+  }
+
+  .bigipads{
+    height: calc(100vh - 40px) !important;
+  }
+
+  .resetbutton{
+    right:385px !important;
+  }
+}
+
+
 
 
 

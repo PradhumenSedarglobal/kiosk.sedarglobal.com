@@ -103,6 +103,7 @@ const Step1 = ({successValue,page,stepcount}) => {
         <MainHeading sx={{ mb: 2 }} title="Category Selection" />
 
         <Box
+          className="bigipads"
           sx={{
             height: { lg: "calc(100vh - 240px)", overflow: "auto" },
           }}
