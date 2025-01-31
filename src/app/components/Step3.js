@@ -1,38 +1,29 @@
-import React, { useEffect, useRef, useState } from "react";
-import Grid from "@mui/material/Grid";
+import React, { useRef, useState } from "react";
 
+// MUI Components
+import Grid from "@mui/material/Grid";
 import {
   Box,
   Button,
-  Card,
-  CardActions,
-  CardContent,
   TextField,
   Typography,
   useMediaQuery,
 } from "@mui/material";
 
-import typography, {
-  Helvetica_Neue,
-  Helvetica_Neue_Regular,
-  Helvetica_Neue_Thin,
-  Helvetica_Neue_Light,
-  Helvetica_Neue_Medium,
-  Helvetica_Neue_Bold,
-  Helvetica_Neue_Light_Arabic,
-  Helvetica_Neue_Bold_Arabic,
-  Helvetica_Neue_Regular_Arabic,
-  Helvetica_Neue_Thin_Arabic,
-  Helvetica_Neue_Medium_Arabic,
-  Helvetica_Neue_Arabic,
-} from "../../theme/typography";
+// Custom Components
 import MainHeading from "./MainHeading";
 import ImageCard from "./ImageCard";
+
+// Redux
+import { useSelector } from "react-redux";
 
 const Step3 = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const selectCategoryRef = useRef();
   const isSmallScreen = useMediaQuery("(max-width: 768px)");
+
+  // Redux
+  const fonts = useSelector((state) => state.font);
 
   const handleChange = (index) => {
     setSelectedCategory(index);
@@ -40,8 +31,6 @@ const Step3 = () => {
 
   return (
     <>
-      {/* Middle Content */}
-
       <Box
         sx={{
           userSelect: "none",
@@ -53,23 +42,35 @@ const Step3 = () => {
         <Box
           className="bigipads"
           sx={{
-            height: { lg: "calc(100vh - 240px)", overflow: "auto", },
+            height: { lg: "calc(100vh - 240px)", overflow: "auto" },
           }}
         >
           <Grid
             sx={{
               overflow: "auto",
-              alignItems: {xs:"center",sm:"center",md:"start",lg:"start",xl:"start"},
-              justifyContent: {xs:"center",sm:"center",md:"start",lg:"start",xl:"start"},
+              alignItems: {
+                xs: "center",
+                sm: "center",
+                md: "start",
+                lg: "start",
+                xl: "start",
+              },
+              justifyContent: {
+                xs: "center",
+                sm: "center",
+                md: "start",
+                lg: "start",
+                xl: "start",
+              },
               px: 2,
-              pb: {sm:20,xs:20,md:5,lg:5},
+              pb: { sm: 20, xs: 20, md: 5, lg: 5 },
             }}
           >
             <TextField
               sx={{
                 marginTop: "10px",
                 width: isSmallScreen == true ? "75%" : "75%",
-                fontFamily: Helvetica_Neue_Regular.style.fontFamily,
+                fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily,
               }}
               id="item-code"
               label="Item Code"
@@ -85,7 +86,7 @@ const Step3 = () => {
                 minWidth: "50px",
                 background: "#ef9c00",
                 color: "white",
-                fontFamily: Helvetica_Neue_Regular.style.fontFamily,
+                fontFamily: fonts.Helvetica_Neue_Regular.style.fontFamily,
                 border: "none",
               }}
               variant="outlined"
@@ -95,7 +96,7 @@ const Step3 = () => {
 
             <Typography
               sx={{
-                fontFamily: Helvetica_Neue_Bold.style.fontFamily,
+                fontFamily: fonts.Helvetica_Neue_Bold.style.fontFamily,
                 marginTop: "20px",
               }}
               gutterBottom
